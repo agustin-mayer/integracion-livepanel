@@ -12,4 +12,6 @@ conn.request("GET", "/v3/collectors/430914330/responses/bulk", headers=headers)
 res = conn.getresponse()
 data = res.read()
 
+
+
 print(data.decode("utf-8"))
