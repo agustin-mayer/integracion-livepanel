@@ -28,9 +28,13 @@ class SurveyAPI:
             for question in page["questions"]:
                 if "answers" in question:
                     for choice in question["answers"]["choices"]:
-                        options[choice["id"]] = f"{choice['id']}"
+                        choice_id = choice["id"]
+                        choice_text = choice.get("text", f"Choice {choice_id}")
+                        options[choice_id] = choice_text
                 elif question["family"] == "open_ended":
-                    options[question["id"]] = f"{question['id']}"
+                    question_id = question["id"]
+                    question_text = question["headings"][0]["heading"]
+                    options[question_id] = question_text
         return options
 
     def get_collector_responses(self, collector_id):

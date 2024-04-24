@@ -11,8 +11,8 @@ def main():
     responses_data = api.get_collector_responses(collector_id)
 
     CSVWriter.write_responses("survey_responses.csv", responses_data, question_options)
-
-    print("Archivo CSV generado exitosamente.")
+    CSVWriter.write_choice_options("survey_choices.csv", question_options)
+    print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":
     main()

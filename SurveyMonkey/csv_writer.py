@@ -5,7 +5,7 @@ class CSVWriter:
     def write_responses(filename, response_data, question_options):
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             csv_writer = csv.writer(csvfile)
-            csv_writer.writerow(["User Response ID"] + list(question_options.values()))
+            csv_writer.writerow(["User Response ID"] + list(question_options.keys()))
             for response in response_data["data"]:
                 response_row = [response["id"]] + ["0"] * len(question_options)
                 for page in response["pages"]:
@@ -24,3 +24,11 @@ class CSVWriter:
                                                 text_response += answer.get("text") + " "
                                         response_row[column_index + 1] = text_response.strip()
                 csv_writer.writerow(response_row)
+
+    @staticmethod
+    def write_choice_options(filename, question_options):
+        with open(filename, "w", newline="", encoding="utf-8") as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerow(["Choice ID", "Option"])
+            for choice_id, option in question_options.items():
+                csv_writer.writerow([choice_id, option])
