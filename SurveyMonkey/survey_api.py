@@ -20,7 +20,7 @@ class SurveyAPI:
         url = f"/v3/surveys/{survey_id}/details"
         return self._api_request("GET", url)
 
-    def get_question_options(self, survey_id):
+    def get_options(self, survey_id):
         url = f"/v3/surveys/{survey_id}/details"
         data = self._api_request("GET", url)
         options = {}
@@ -37,6 +37,6 @@ class SurveyAPI:
                     options[question_id] = question_text
         return options
 
-    def get_collector_responses(self, collector_id):
-        url = f"/v3/collectors/{collector_id}/responses/bulk"
+    def get_responses(self, survey_id):
+        url = f"/v3/surveys/{survey_id}/responses/bulk"
         return self._api_request("GET", url)
