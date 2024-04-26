@@ -10,7 +10,7 @@ def main():
     responses = api.get_responses(survey_id)
 
     CSVWriter.write_responses(f"./data/{survey_id}_responses.csv", responses, options)
-    CSVWriter.write_choice_options(f"./data/{survey_id}_options.csv", options)
+    CSVWriter.write_options(f"./data/{survey_id}_options.csv", options)
     print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":

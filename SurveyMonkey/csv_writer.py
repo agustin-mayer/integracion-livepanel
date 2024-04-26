@@ -26,7 +26,7 @@ class CSVWriter:
                 csv_writer.writerow(response_row)
 
     @staticmethod
-    def write_choice_options(filename, question_options):
+    def write_options(filename, question_options):
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(["Choice ID", "Option"])
