@@ -10,8 +10,8 @@ def main():
     question_options = api.get_question_options(survey_id)
     responses_data = api.get_collector_responses(collector_id)
 
-    CSVWriter.write_responses("survey_responses.csv", responses_data, question_options)
-    CSVWriter.write_choice_options("survey_choices.csv", question_options)
+    CSVWriter.write_responses(f"./data/{survey_id}_responses.csv", responses_data, question_options)
+    CSVWriter.write_choice_options(f"./data/{survey_id}_choices.csv", question_options)
     print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":
