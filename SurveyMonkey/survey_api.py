@@ -2,13 +2,13 @@ import http.client
 import json
 
 class SurveyAPI:
-    def __init__(self, token):
+    def __init__(self, token,survey_api_url):
         self.token = token
         self.headers = {
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
         }
-        self.conn = http.client.HTTPSConnection("api.surveymonkey.com")
+        self.conn = http.client.HTTPSConnection(f"{survey_api_url}")
 
     def _api_request(self, method, url):
         self.conn.request(method, url, headers=self.headers)
