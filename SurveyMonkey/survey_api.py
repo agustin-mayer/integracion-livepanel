@@ -40,3 +40,8 @@ class SurveyAPI:
     def get_responses(self, survey_id):
         url = f"/v3/surveys/{survey_id}/responses/bulk"
         return self._api_request("GET", url)
+    
+    def complete_response(self, survey_id, response_id, payload): 
+        url = f"/v3/surveys/{survey_id}/responses/{response_id}"
+        return self._api_request("PATCH", url, payload)
+    
