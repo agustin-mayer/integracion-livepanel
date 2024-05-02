@@ -1,5 +1,5 @@
 from survey_api import SurveyAPI
-from csv_writer import CSVWriter
+from csv_handler import CSVHandler
 
 def main():
     survey_id = "412807489"
@@ -10,8 +10,8 @@ def main():
     options = api.get_options(survey_id)
     responses = api.get_responses(survey_id)
 
-    CSVWriter.write_responses(f"./data/{survey_id}_responses.csv", responses, options)
-    CSVWriter.write_options(f"./data/{survey_id}_options.csv", options)
+    CSVHandler.write_responses(f"./data/{survey_id}_responses.csv", responses, options)
+    CSVHandler.write_options(f"./data/{survey_id}_options.csv", options)
     print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":
