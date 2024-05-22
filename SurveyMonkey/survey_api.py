@@ -36,10 +36,10 @@ class SurveyMonkeyAPI:
                     for choice in question["answers"]["choices"]:
                         choice_id = choice["id"]
                         choice_text = choice.get("text", f"Choice {choice_id}")
-                        options[(page_id, question_id, choice_id)] = choice_text
+                        options[question_id, choice_id] = choice_text
                 elif question["family"] == "open_ended":
                     question_text = question["headings"][0]["heading"]
-                    options[(page_id, question_id, None)] = question_text
+                    options[(question_id, None)] = question_text
         return options
 
     def get_responses(self, survey_id):

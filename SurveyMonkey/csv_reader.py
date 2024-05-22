@@ -1,9 +1,12 @@
 import csv
 
-class CSVWriter:
+class CSVReader:
+    
+    #HAY QUE CAMBIARLO TODO
+     
     @staticmethod
     def write_responses(filename, response_data, question_options):
-        # Crear la lista de encabezados con los IDs de las preguntas/opciones
+        # Crea la lista de encabezados con los IDs de las preguntas/opciones
         headers = ["User Response ID"] + [key[1] if key[1] else key[0] for key in question_options.keys()]
         print(headers)
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
@@ -18,7 +21,7 @@ class CSVWriter:
                             for answer in question["answers"]:
                                 choice_id = answer.get("choice_id")
                                 if choice_id:
-                                    # Buscar la posición del choice_id en la lista de encabezados
+                                    # Busca la posición del choice_id en la lista de encabezados
                                     try:
                                         column_index = headers.index(choice_id)
                                         response_row[column_index] = "1"
