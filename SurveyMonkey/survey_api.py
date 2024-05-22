@@ -1,7 +1,7 @@
 import http.client
 import json
 
-class SurveyAPI:
+class SurveyMonkeyAPI:
     def __init__(self, token,survey_api_url):
         self.token = token
         self.headers = {
