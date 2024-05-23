@@ -1,4 +1,4 @@
-from survey_api import SurveyMonkeyAPI
+from sm_api import SurveyMonkeyAPI
 from csv_writer import CSVWriter
 
 def main():
