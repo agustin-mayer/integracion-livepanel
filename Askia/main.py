@@ -1,12 +1,23 @@
 import xml.etree.ElementTree as ET
 import csv
 
-# Analizar el archivo XML
-tree = ET.parse('./entradas/intvw383.xml')
-root = tree.getroot()
+interviewer_id = 383
+
+# Leer y modificar el contenido del archivo XML
+with open(f'./entradas/xml/intvw{interviewer_id}.xml', 'rb') as file:
+    xml_content = file.read()
+
+# Reemplazar la declaración de codificación
+xml_content = xml_content.replace(b'encoding="Unicode"', b'encoding="UTF-8"')
+
+# Decodificar el contenido usando la codificación correcta
+xml_content = xml_content.decode('utf-16')  # Assuming the original encoding was UTF-16
+
+# Analizar el contenido XML modificado
+root = ET.fromstring(xml_content)
 
 # Abrir el archivo CSV para escritura
-with open('output.csv', 'w', newline='') as csvfile:
+with open(f'./entradas/csv/intvw{interviewer_id}.csv', 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
     
     # Escribir el encabezado
