@@ -5,7 +5,6 @@ class CSVWriter:
     def write_responses(filename, response_data, question_options):
         # Crear la lista de encabezados con los IDs de las preguntas/opciones
         headers = ["User Response ID"] + [key[1] if key[1] else key[0] for key in question_options.keys()]
-        print(headers)
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(headers)

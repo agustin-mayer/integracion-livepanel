@@ -1,8 +1,12 @@
 import requests
+from dotenv import load_dotenv
+import os
 
 def download_dataset(project_id, dataset_type):
+    load_dotenv()
+    token = os.getenv("LIVEPANEL_API_TOKEN")
     endpoint = f'https://tools.api.stg.livepanel.ai/v2/api/projects/{project_id}/datasets/get_file'
-    headers = {'Authorization': 'Api-Key gAAAAABmR5TuuJhySWr5kvjPPlFH55cA-2kKec8IhL3SQ-1xQJDioFVYvIQ5i_3X_cB5w-L0_8NLe1KE1qyKme82U2LJEAR0lbZM2GJUjFkACGzFgRZp7PONZx8Xr8zHYC3MD0mf0ubN'}
+    headers = {'Authorization': f'{token}'}
     
     try:
         response = requests.get(endpoint, headers=headers, params={'type': dataset_type}, verify=False)

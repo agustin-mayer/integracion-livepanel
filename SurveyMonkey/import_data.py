@@ -1,17 +1,21 @@
 from sm_api import SurveyMonkeyAPI
 from csv_writer import CSVWriter
+from dotenv import load_dotenv
+import os
+
 
 def main():
-    survey_id = "412807489"
-    token = "rFQ8cH5B5PWvIzyh2svCaRRENKcGqvgPvFqgJZucojFF4gSBsu6fzXZ2Z2A5Vy3uSjq4rZgsMznPQ.W9fakshPiaoOCyBsLv5pUqz1gkVqSeUMbmgmPnToA-ttzQ4fiD"
-    survey_api_url = "api.surveymonkey.com"
+    load_dotenv()
+    smonkey_token = os.getenv("SURVEYMONKEY_API_TOKEN")
+    smonkey_api_url = "api.surveymonkey.com"
+    smonkey_survey_id = "412807489"
     
-    api = SurveyMonkeyAPI(token,survey_api_url)
-    options = api.get_options(survey_id)
-    responses = api.get_responses(survey_id)
+    api = SurveyMonkeyAPI(smonkey_token,smonkey_api_url)
+    options = api.get_options(smonkey_survey_id)
+    responses = api.get_responses(smonkey_survey_id)
 
-    CSVWriter.write_responses(f"./data/{survey_id}_responses.csv", responses, options)
-    CSVWriter.write_options(f"./data/{survey_id}_options.csv", options)
+    CSVWriter.write_responses(f"./data/{smonkey_survey_id}_responses.csv", responses, options)
+    CSVWriter.write_options(f"./data/{smonkey_survey_id}_options.csv", options)
     print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":
