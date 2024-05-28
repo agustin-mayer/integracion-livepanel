@@ -11,7 +11,7 @@ def main():
     
     api = SurveyMonkeyAPI(smonkey_token,smonkey_api_url)
     
-    csv_file = os.path.join("data", f"{smonkey_survey_id}_responses.csv")
+    csv_file = os.path.join("sm_data", f"{smonkey_survey_id}_responses.csv")
     payload_data = CSVReader.create_payload(csv_file)
 
     api.complete_responses(smonkey_survey_id, payload_data)

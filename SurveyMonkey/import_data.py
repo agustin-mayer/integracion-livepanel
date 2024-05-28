@@ -14,8 +14,8 @@ def main():
     options = api.get_options(smonkey_survey_id)
     responses = api.get_responses(smonkey_survey_id)
 
-    CSVWriter.write_responses(f"./data/{smonkey_survey_id}_responses.csv", responses, options)
-    CSVWriter.write_options(f"./data/{smonkey_survey_id}_options.csv", options)
+    CSVWriter.write_responses(f"./sm_data/{smonkey_survey_id}_responses.csv", responses, options)
+    CSVWriter.write_options(f"./sm_data/{smonkey_survey_id}_options.csv", options)
     print("Archivos CSV generados exitosamente.")
 
 if __name__ == "__main__":

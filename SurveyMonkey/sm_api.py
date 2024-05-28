@@ -5,6 +5,7 @@ class SurveyMonkeyAPI:
     def __init__(self, token,survey_api_url):
         self.token = token
         self.headers = {
+            "Accept": "application/json",
             "Authorization": f"Bearer {token}",
             "Content-Type": "application/json"
         }
@@ -51,3 +52,7 @@ class SurveyMonkeyAPI:
             url = f"/v3/surveys/{survey_id}/responses/{response_id}"
             self._api_request("PATCH", url, payload)
     
+    def complete_all_responses(self, survey_id, payload_data): 
+        payload = payload_data.items()
+        url = f"/v3/surveys/{survey_id}/responses/"
+        self._api_request("PATCH", url, payload)
