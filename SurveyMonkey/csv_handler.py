@@ -1,14 +1,10 @@
 import csv
 
-class CSVReader:
-    
-    #HAY QUE CAMBIARLO TODO
-     
+class CSVHandler:
     @staticmethod
     def write_responses(filename, response_data, question_options):
-        # Crea la lista de encabezados con los IDs de las preguntas/opciones
+        # Crear la lista de encabezados con los IDs de las preguntas/opciones
         headers = ["User Response ID"] + [key[1] if key[1] else key[0] for key in question_options.keys()]
-        print(headers)
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(headers)
@@ -21,7 +17,7 @@ class CSVReader:
                             for answer in question["answers"]:
                                 choice_id = answer.get("choice_id")
                                 if choice_id:
-                                    # Busca la posición del choice_id en la lista de encabezados
+                                    # Buscar la posición del choice_id en la lista de encabezados
                                     try:
                                         column_index = headers.index(choice_id)
                                         response_row[column_index] = "1"
@@ -37,9 +33,23 @@ class CSVReader:
                 csv_writer.writerow(response_row)
 
     @staticmethod
-    def write_options(filename, question_options):
+    def write_options(filename, data):
+        options = {}
+        for page in data["pages"]:
+            page_id = page["id"]
+            for question in page["questions"]:
+                question_id = question["id"]
+                if "answers" in question:
+                    for choice in question["answers"]["choices"]:
+                        choice_id = choice["id"]
+                        choice_text = choice.get("text", f"Choice {choice_id}")
+                        options[question_id, choice_id] = choice_text
+                elif question["family"] == "open_ended":
+                    question_text = question["headings"][0]["heading"]
+                    options[(question_id, None)] = question_text 
+        
         with open(filename, "w", newline="", encoding="utf-8") as csvfile:
             csv_writer = csv.writer(csvfile)
             csv_writer.writerow(["Choice ID", "Option"])
-            for (question_id, choice_id), option in question_options.items():
+            for (question_id, choice_id), option in options.items():
                 csv_writer.writerow([choice_id if choice_id else question_id, option])

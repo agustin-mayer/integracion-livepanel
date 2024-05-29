@@ -28,31 +28,18 @@ class SurveyMonkeyAPI:
     def get_options(self, survey_id):
         url = f"/v3/surveys/{survey_id}/details"
         data = self._api_request("GET", url)
-        options = {}
-        for page in data["pages"]:
-            page_id = page["id"]
-            for question in page["questions"]:
-                question_id = question["id"]
-                if "answers" in question:
-                    for choice in question["answers"]["choices"]:
-                        choice_id = choice["id"]
-                        choice_text = choice.get("text", f"Choice {choice_id}")
-                        options[question_id, choice_id] = choice_text
-                elif question["family"] == "open_ended":
-                    question_text = question["headings"][0]["heading"]
-                    options[(question_id, None)] = question_text
-        return options
-
-    def get_responses(self, survey_id):
-        url = f"/v3/surveys/{survey_id}/responses/bulk"
-        return self._api_request("GET", url)
+        return data
     
     def complete_responses(self, survey_id, payload_data): 
         for response_id, payload in payload_data.items():
             url = f"/v3/surveys/{survey_id}/responses/{response_id}"
             self._api_request("PATCH", url, payload)
     
-    def complete_all_responses(self, survey_id, payload_data): 
-        payload = payload_data.items()
-        url = f"/v3/surveys/{survey_id}/responses/"
-        self._api_request("PATCH", url, payload)
+    
+    def get_responses(self, collector_id):
+        url = f"/v3/collectors/{collector_id}/responses/bulk"
+        return self._api_request("GET", url)
+    
+    def post_responses(self, collector_id, payload_data): 
+        url = f"/v3/collectors/{collector_id}/responses/"
+        self._api_request("POST", url, payload_data)

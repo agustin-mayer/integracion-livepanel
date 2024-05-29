@@ -1,0 +1,766 @@
+[
+    {
+        "custom_variables": {},
+        "custom_value": "",
+        "date_created": "2024-04-15T16:00:34+00:00",
+        "response_status": "completed",
+        "ip_address": "127.0.0.1",
+        "recipient_id": "",
+        "pages": [
+            {
+                "id": "53000674",
+                "questions": [
+                    {
+                        "id": "185050072",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367935",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367936",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367937",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367938",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367939",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050073",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367940",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367941",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367942",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367943",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367944",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "53013544",
+                "questions": [
+                    {
+                        "id": "185050078",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367950",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367951",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367952",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367953",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "custom_variables": {},
+        "custom_value": "",
+        "date_created": "2024-04-15T16:00:59+00:00",
+        "response_status": "completed",
+        "ip_address": "127.0.0.1",
+        "recipient_id": "",
+        "pages": [
+            {
+                "id": "53000674",
+                "questions": [
+                    {
+                        "id": "185050072",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367935",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367936",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367937",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367938",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367939",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050073",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367940",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367941",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367942",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367943",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367944",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050074",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367945",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367946",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367947",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367948",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367949",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050075",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "fanta"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "53013544",
+                "questions": [
+                    {
+                        "id": "185050077",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "12"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "custom_variables": {},
+        "custom_value": "",
+        "date_created": "2024-04-15T15:58:17+00:00",
+        "response_status": "completed",
+        "ip_address": "127.0.0.1",
+        "recipient_id": "",
+        "pages": [
+            {
+                "id": "53000674",
+                "questions": [
+                    {
+                        "id": "185050072",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367935",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367936",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367937",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367938",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367939",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050073",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367940",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367941",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367942",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367943",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367944",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050074",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367945",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367946",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367947",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367948",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367949",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050075",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "aquarius de pera"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "53013544",
+                "questions": [
+                    {
+                        "id": "185050076",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "no"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050078",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367950",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367951",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367952",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367953",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "custom_variables": {},
+        "custom_value": "",
+        "date_created": "2024-04-15T21:26:33+00:00",
+        "response_status": "partial",
+        "ip_address": "127.0.0.1",
+        "recipient_id": "",
+        "pages": [
+            {
+                "id": "53000674",
+                "questions": [
+                    {
+                        "id": "185050072",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367935",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367936",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367937",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367938",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367939",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050073",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367940",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367941",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367942",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367943",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367944",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050074",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367945",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367946",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367947",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367948",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367949",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050075",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "no tengo favorita"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "53013544",
+                "questions": []
+            }
+        ]
+    },
+    {
+        "custom_variables": {},
+        "custom_value": "",
+        "date_created": "2024-04-15T19:58:40+00:00",
+        "response_status": "partial",
+        "ip_address": "127.0.0.1",
+        "recipient_id": "",
+        "pages": [
+            {
+                "id": "53000674",
+                "questions": [
+                    {
+                        "id": "185050072",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367935",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367936",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367937",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367938",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367939",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    },
+                    {
+                        "id": "185050073",
+                        "variable_id": "",
+                        "answers": [
+                            {
+                                "choice_id": "1340367940",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367941",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367942",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367943",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            },
+                            {
+                                "choice_id": "1340367944",
+                                "row_id": "",
+                                "col_id": "",
+                                "other_id": "",
+                                "text": "1"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "53013544",
+                "questions": []
+            }
+        ]
+    }
+]

@@ -1,22 +1,40 @@
-from sm_api import SurveyMonkeyAPI
-from csv_writer import CSVWriter
+from sm_api_access import SurveyMonkeyAPI
+from option_processor import process_options
+from json_handler import JSONHandler
+from csv_handler import CSVHandler
 from dotenv import load_dotenv
 import os
 
 
 def main():
     load_dotenv()
-    smonkey_token = os.getenv("SURVEYMONKEY_API_TOKEN")
-    smonkey_api_url = "api.surveymonkey.com"
-    smonkey_survey_id = "412807489"
+    sMonkey_token = os.getenv("SURVEYMONKEY_API_TOKEN")
+    sMonkey_API_url = "api.surveymonkey.com"
+    sMonkey_API = SurveyMonkeyAPI(sMonkey_token,sMonkey_API_url)
     
-    api = SurveyMonkeyAPI(smonkey_token,smonkey_api_url)
-    options = api.get_options(smonkey_survey_id)
-    responses = api.get_responses(smonkey_survey_id)
+    sMonkey_svy_coll_id = "430914330"
+    responses = sMonkey_API.get_responses(sMonkey_svy_coll_id)
+    
+    sMonkey_svy_id = "412807489"
+    survey_data = sMonkey_API.get_options(sMonkey_svy_id)
+    CSVHandler.write_options(f"./sm_data/{sMonkey_svy_coll_id}_options.csv", survey_data)
+    
+    options = process_options(survey_data)
+    CSVHandler.write_responses(f"./sm_data/{sMonkey_svy_coll_id}_responses.csv", responses, options)
+    JSONHandler.write_responses(f"./sm_data/{sMonkey_svy_coll_id}_responses.json", responses)
+    
+    print("Archivos CSV y JSON generados exitosamente.")
 
-    CSVWriter.write_responses(f"./sm_data/{smonkey_survey_id}_responses.csv", responses, options)
-    CSVWriter.write_options(f"./sm_data/{smonkey_survey_id}_options.csv", options)
-    print("Archivos CSV generados exitosamente.")
+    """
+    livepanel_token = os.getenv("LIVEPANEL_API_TOKEN")
+    livepanel_API_url = "tools.api.livepanel.ai"
+    livepanel_API = LivepanelAPI(livepanel_token,livepanel_API_url)
+
+    payload = f"./sm_data/{sMonkey_svy_coll_id}_responses.csv"
+    livepanelAPI.create_project(train_csv)
+
+    print("Se ha creado un nuevo proyecto en Livepanel.")
+    """
 
 if __name__ == "__main__":
     main()
