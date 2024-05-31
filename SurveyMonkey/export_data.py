@@ -1,4 +1,5 @@
 from sm_api_access import SurveyMonkeyAPI
+from lp_api_access import LivepanelAPI
 from option_processor import process_options
 from json_handler import JSONHandler
 from csv_handler import CSVHandler
@@ -8,12 +9,12 @@ import os
 
 def main():
     load_dotenv()
-    """
+    
     livepanel_token = os.getenv("LIVEPANEL_API_TOKEN")
     livepanel_API_url = "tools.api.livepanel.ai"
     livepanel_API = LivepanelAPI(livepanel_token,livepanel_API_url)
 
-    payload = livepanel_API.get_predicted()
+    payload = livepanel_API.get_project(131)
 
     print("Se obtuvieron las respuestas completas desde Livepanel.")
     """
@@ -32,7 +33,7 @@ def main():
 
     
     print("Respuestas actualizadas con exito.")
-    
+    """
     
 if __name__ == "__main__":
     main()
