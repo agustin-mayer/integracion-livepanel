@@ -18,7 +18,14 @@ def parse_xml_to_csv_headers_only(xml_file, csv_file):
 
     for question in root.findall('.//Question'):
         question_id = question.attrib['ID']
-        headers.append(question_id)
+        element_type = question.attrib.get('ElementType')
+        
+        if element_type == 'loop':
+            for modality in question.findall('.//Modality'):
+                modality_id = modality.attrib['ID']
+                headers.append(f'Q{question_id}_{modality_id}')
+        else:
+            headers.append(question_id)
 
     with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
