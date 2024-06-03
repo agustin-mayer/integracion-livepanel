@@ -1,48 +1,15 @@
-import xml.etree.ElementTree as ET
-import csv
+from app.xml_parser import parse_xml_to_csv_headers_only#, parse_responses_and_update_csv
 
-interviewer_id = 383
+def main():
+    xml_file = './data/SurveyStructure.xml'
+    csv_file = './data/output.csv'
 
-# Leer y modificar el contenido del archivo XML
-with open(f'./entradas/xml/intvw{interviewer_id}.xml', 'rb') as file:
-    xml_content = file.read()
+    # Crear CSV con encabezados
+    parse_xml_to_csv_headers_only(xml_file, csv_file)
 
-# Reemplazar la declaración de codificación
-xml_content = xml_content.replace(b'encoding="Unicode"', b'encoding="UTF-8"')
+    # Completar CSV con respuestas de múltiples archivos XML
+    response_files = ['./data/response1.xml', './data/response2.xml']  # Agrega más archivos si es necesario
+   # parse_responses_and_update_csv(response_files, csv_file)
 
-# Decodificar el contenido usando la codificación correcta
-xml_content = xml_content.decode('utf-16')  # Assuming the original encoding was UTF-16
-
-# Analizar el contenido XML modificado
-root = ET.fromstring(xml_content)
-
-# Abrir el archivo CSV para escritura
-with open(f'./entradas/csv/intvw{interviewer_id}.csv', 'w', newline='') as csvfile:
-    csvwriter = csv.writer(csvfile)
-    
-    # Escribir el encabezado
-    header = ['User', 'QuestionId', 'Value']
-    csvwriter.writerow(header)
-    
-    # Obtener el User ID
-    user_id = root.find('Header/User').text
-    
-    # Extraer datos de respuestas
-    for answer in root.findall('Answer'):
-        question_id = answer.attrib['QuestionId']
-        value = answer.find('Value').text
-        
-        row = [user_id, question_id, value]
-        csvwriter.writerow(row)
-    
-    # Extraer datos de respuestas dentro de bucles
-    for loop in root.findall('Loop'):
-        for item in loop.findall('Item'):
-            for answer in item.findall('Answer'):
-                question_id = answer.attrib['QuestionId']
-                value = answer.find('Value').text
-                
-                row = [user_id, question_id, value]
-                csvwriter.writerow(row)
-
-print("El archivo CSV ha sido creado exitosamente.")
+if __name__ == "__main__":
+    main()
