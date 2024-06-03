@@ -1,15 +1,15 @@
-from app.xml_parser import parse_xml_to_csv_headers_only#, parse_responses_and_update_csv
+# main.py
 
-def main():
-    xml_file = './data/SurveyStructure.xml'
-    csv_file = './data/output.csv'
+import os
+from app.xml_parser import parse_xml_to_csv_headers_only
+from app.response_loader import load_responses_to_csv
 
-    # Crear CSV con encabezados
-    parse_xml_to_csv_headers_only(xml_file, csv_file)
+xml_file = './data/SurveyStructure.xml'
+csv_file = './data/output.csv'
+xml_responses_folder = './data/xml'
 
-    # Completar CSV con respuestas de múltiples archivos XML
-    response_files = ['./data/response1.xml', './data/response2.xml']  # Agrega más archivos si es necesario
-   # parse_responses_and_update_csv(response_files, csv_file)
+# Generar los encabezados del CSV
+parse_xml_to_csv_headers_only(xml_file, csv_file)
 
-if __name__ == "__main__":
-    main()
+# Cargar las respuestas en el CSV
+load_responses_to_csv(xml_responses_folder, csv_file)

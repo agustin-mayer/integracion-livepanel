@@ -8,7 +8,7 @@ def parse_xml_to_csv_headers_only(xml_file, csv_file):
         xml_content = file.read().replace('encoding="Unicode"', 'encoding="UTF-8"')
     
     root = ET.fromstring(xml_content)
-    headers = ['USER']
+    headers = ['Interview']
 
     for question in root.findall('.//Question'):
         question_id = question.attrib['ID']
