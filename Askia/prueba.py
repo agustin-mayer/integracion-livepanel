@@ -1,25 +1,30 @@
 import xml.etree.ElementTree as ET
+import csv
 import chardet
 
-# Ruta al archivo XML
-file_path = './SurveyStructure.xml'  # Reemplazar con la ruta correcta si es necesario
-
-# Detectar la codificación del archivo
-with open(file_path, 'rb') as raw_file:
-    raw_data = raw_file.read()
+def detect_encoding(file_path):
+    with open(file_path, 'rb') as file:
+        raw_data = file.read()
     result = chardet.detect(raw_data)
-    encoding = result['encoding']
-    print(f"Detected encoding: {encoding}")
+    return result['encoding']
 
-# Función para explorar el árbol XML y mostrar las etiquetas y atributos
-def explore_xml(element, indent=0):
-    print(" " * indent + f"Tag: {element.tag}, Attributes: {element.attrib}")
-    for child in element:
-        explore_xml(child, indent + 2)
+def parse_xml_to_csv_headers_only(xml_file, csv_file):
+    encoding = detect_encoding(xml_file)
+    with open(xml_file, 'r', encoding=encoding) as file:
+        xml_content = file.read().replace('encoding="Unicode"', 'encoding="UTF-8"')
+    
+    root = ET.fromstring(xml_content)
+    headers = ['USER']
 
-# Decodificar los datos crudos y parsear el contenido XML
-decoded_data = raw_data.decode(encoding)
-tree = ET.ElementTree(ET.fromstring(decoded_data))
-root = tree.getroot()
-# Explorar el árbol XML a partir de la raíz
-explore_xml(root)
+    for question in root.findall('.//Question'):
+        question_id = question.attrib['ID']
+        headers.append(question_id)
+
+    with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(headers)
+
+xml_file = './SurveyStructure.xml'
+csv_file = './output.csv'
+
+parse_xml_to_csv_headers_only(xml_file, csv_file)
