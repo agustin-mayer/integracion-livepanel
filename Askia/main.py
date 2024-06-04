@@ -5,7 +5,7 @@ from app.xml_parser import parse_xml_to_csv_headers_only
 from app.response_loader import load_responses_to_csv
 
 xml_file = './data/SurveyStructure.xml'
-csv_file = './data/output.csv'
+csv_file = './data/askia_output.csv'
 xml_responses_folder = './data/xml_responses'
 
 # Generar los encabezados del CSV
