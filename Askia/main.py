@@ -1,6 +1,3 @@
-# main.py
-
-import os
 from app.xml_parser import parse_xml_to_csv_headers_only
 from app.response_loader import load_responses_to_csv
 
