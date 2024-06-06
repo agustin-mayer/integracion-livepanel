@@ -35,18 +35,7 @@ def write_to_csv(headers, csv_file):
         writer = csv.writer(file)
         writer.writerow(headers)
 
-def main():
-    # Rutas de los archivos
-    xml_file_path = "./data/SurveyStructure.xml"
-    csv_file_path = "train_dataset.csv" 
-
-    # Obtener encabezados y datos
+def crear_encabezados(xml_file_path, csv_file_path):
     headers = parse_survey_structure(xml_file_path)
-
-    # Escribir al archivo CSV
     write_to_csv(headers, csv_file_path)
-
     print("El archivo CSV inicial con los encabezados se ha generado correctamente.")
-
-if __name__ == "__main__":
-    main()
