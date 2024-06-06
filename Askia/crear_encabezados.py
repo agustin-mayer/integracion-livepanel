@@ -23,48 +23,17 @@ def parse_survey_structure(xml_file):
                 for modality in root.findall(f'.//Question[@ID="{linked_question_id}"]//Modality'):
                     modality_id = modality.attrib['ID']
                     headers.append(f'Q{question_id}_{modality_id}')
+            else:
+                for modality in modalities.findall('Modality'):
+                    modality_id = modality.attrib['ID']
+                    headers.append(f'Q{question_id}_{modality_id}')
     
     return headers
 
-def extract_data_from_survey(xml_file, headers):
-    encoding = detect_encoding(xml_file)
-    tree = ET.parse(xml_file, parser=ET.XMLParser(encoding=encoding))
-    root = tree.getroot()
-    
-    data = []
-    
-    # Recorrer las entrevistas y extraer las respuestas
-    for interview in root.findall('.//Interview'):
-        row = [interview.attrib['ID']]
-        
-        # Recorrer las preguntas y sus respuestas
-        for question_id in headers[1:]:
-            question = root.find(f'.//Question[@ID="{question_id}"]')
-            
-            # Si la pregunta tiene modalidades, agregar los valores de las modalidades
-            if 'Q' in question_id:
-                question_id, modality_id = question_id.split('_')
-                modality = question.find(f'.//Modality[@ID="{modality_id}"]')
-                if modality is not None:
-                    row.append(modality.find('LongCaption').text)
-                else:
-                    row.append('')
-            else:
-                answer = interview.find(f'.//QuestionnaireData//QuestionAnswer[@QuestionID="{question_id}"]')
-                if answer is not None:
-                    row.append(answer.text)
-                else:
-                    row.append('')
-        
-        data.append(row)
-    
-    return data
-
-def write_to_csv(data, headers, csv_file):
+def write_to_csv(headers, csv_file):
     with open(csv_file, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(headers)
-        writer.writerows(data)
 
 def main():
     # Rutas de los archivos
@@ -73,10 +42,9 @@ def main():
 
     # Obtener encabezados y datos
     headers = parse_survey_structure(xml_file_path)
-    data = extract_data_from_survey(xml_file_path, headers)
 
     # Escribir al archivo CSV
-    write_to_csv(data, headers, csv_file_path)
+    write_to_csv(headers, csv_file_path)
 
     print("El archivo CSV inicial con los encabezados se ha generado correctamente.")
 
