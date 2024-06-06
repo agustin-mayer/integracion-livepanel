@@ -22,16 +22,33 @@ def process_xml_file(xml_file, headers):
     interview_id = root.find('Header/Id').text
     row = [interview_id]
     
+    header_map = {header: '0' for header in headers[1:]}  # Mapeo inicial con valor predeterminado
+
+    # Procesar respuestas directas
     for question_id in headers[1:]:
-        value = '0'  # Valor predeterminado si no se menciona la pregunta
-        
         answer = root.find(f'.//Answer[@QuestionId="{question_id}"]')
         if answer is not None:
-            value = '1' if answer.find('Value') is None else answer.find('Value').text
-        
-        row.append(value)
+            header_map[question_id] = '1' if answer.find('Value') is None else answer.find('Value').text
+
+    # Procesar loops
+    for loop in root.findall('.//Loop'):
+        loop_question_id = loop.attrib['QuestionId']
+        header_map[loop_question_id] = '1'
+
+        # Marcar los ítems dentro del loop
+        for item in loop.findall('.//Item'):
+            modality_id = item.attrib['modalityId']
+            item_header = f'Q{loop_question_id}_{modality_id}'
+            if item_header in header_map:
+                header_map[item_header] = '1'
+                print(f"item{header_map[item_header]}")
+
+
+
+    row.extend(header_map[header] for header in headers[1:])
     
     return row
+
 
 
 def process_xml_files_in_folder(folder_path, csv_file):
