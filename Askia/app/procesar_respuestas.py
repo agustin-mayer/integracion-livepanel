@@ -39,7 +39,6 @@ def process_xml_file(xml_file, headers):
             value = '1' 
             for answer in item.findall('.//Answer'):
                 value = '1' if answer.find('Value') is None else answer.find('Value').text
-                print(value)
             loop_header = f'Q{loop_question_id}_{modality_id}'
             if loop_header in header_map:
                     header_map[loop_header] = value

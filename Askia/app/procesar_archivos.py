@@ -1,6 +1,6 @@
 import os
 import csv
-from procesar_respuestas import load_survey_structure, process_xml_file
+from app.procesar_respuestas import load_survey_structure, process_xml_file
 
 def process_xml_files_in_folder(folder_path, csv_file):
     headers = load_survey_structure(csv_file)
