@@ -1,10 +1,10 @@
-from crear_encabezados import crear_encabezados
-from procesar_archivos import process_xml_files_in_folder
+from app.crear_encabezados import crear_encabezados
+from app.procesar_archivos import process_xml_files_in_folder
 
 def main():
     # Rutas de los archivos
     xml_file_path = "./data/SurveyStructure.xml"
-    csv_file_path = "train_dataset.csv"
+    csv_file_path = "./data/train_dataset.csv"
     folder_path = "./data/xml_responses"
 
     # Crear encabezados
