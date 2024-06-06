@@ -33,13 +33,16 @@ def process_xml_file(xml_file, headers):
     for loop in root.findall('.//Loop'):
         loop_question_id = loop.attrib['QuestionId']
         header_map[loop_question_id] = '1'
-
         # Marcar los ítems dentro del loop
         for item in loop.findall('.//Item'):
             modality_id = item.attrib['modalityId']
-            item_header = f'Q{loop_question_id}_{modality_id}'
-            if item_header in header_map:
-                header_map[item_header] = '1'
+            value = '1' 
+            for answer in item.findall('.//Answer'):
+                value = '1' if answer.find('Value') is None else answer.find('Value').text
+                print(value)
+            loop_header = f'Q{loop_question_id}_{modality_id}'
+            if loop_header in header_map:
+                    header_map[loop_header] = value
 
     row.extend(header_map[header] for header in headers[1:])
     
