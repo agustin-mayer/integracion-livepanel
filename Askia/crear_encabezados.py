@@ -68,8 +68,8 @@ def write_to_csv(data, headers, csv_file):
 
 def main():
     # Rutas de los archivos
-    xml_file_path = r'C:\Users\Agus\Documents\GitHub\integracion-livepanel\Askia\data\SurveyStructure.xml'
-    csv_file_path = "train_dataset.csv"  # Puedes cambiar esto al nombre que desees
+    xml_file_path = "./data/SurveyStructure.xml"
+    csv_file_path = "train_dataset.csv" 
 
     # Obtener encabezados y datos
     headers = parse_survey_structure(xml_file_path)
