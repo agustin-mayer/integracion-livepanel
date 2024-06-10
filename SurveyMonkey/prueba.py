@@ -1,5 +1,8 @@
 import csv
 import json
+from sMonkeyAPI_access import SurveyMonkeyAPI  # Asegúrate de que la ruta sea correcta
+from dotenv import load_dotenv
+import os
 
 def parse_header(header):
     try:
@@ -12,7 +15,7 @@ def parse_header(header):
     except ValueError:
         return None, None, None
 
-def csv_to_json(csv_file):
+def csv_to_json_and_update(csv_file, api):
     with open(csv_file, 'r') as file:
         csv_reader = csv.reader(file)
         headers = next(csv_reader)
@@ -57,13 +60,18 @@ def csv_to_json(csv_file):
                         break
             
             user_data = {"pages": list(pages.values())}
-            
-            # Write each user's data to a separate JSON file
-            output_filename = f"{user_response_id}_responses.json"
-            with open(output_filename, 'w') as outfile:
-                json.dump(user_data, outfile, indent=2)
-    
-    print("JSON files have been created successfully.")
+            print(user_data)
+            # Llamada a la API de SurveyMonkey para actualizar la respuesta
+            survey_collector_id = "430914330"  # Asegúrate de configurar esto correctamente
+            response = api.complete_response(survey_collector_id, user_response_id, user_data)
+            print(f"Response for user {user_response_id}: {response}")
 
 csv_file = '430914330_responses.csv'
-csv_to_json(csv_file)
+
+# Inicializa la API de SurveyMonkey
+load_dotenv()
+sMonkey_token = os.getenv("SURVEYMONKEY_API_TOKEN")
+sMonkey_API_url = "api.surveymonkey.com"
+api = SurveyMonkeyAPI(sMonkey_token, sMonkey_API_url)
+
+csv_to_json_and_update(csv_file, api)

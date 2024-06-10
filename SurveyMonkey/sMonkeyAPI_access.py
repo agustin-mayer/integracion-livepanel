@@ -31,7 +31,7 @@ class SurveyMonkeyAPI:
         return data
     
     def complete_response(self, survey_collector_id, response_id, payload): 
-        url = f"/v3/surveys/{survey_collector_id}/responses/{response_id}"
+        url = f"/v3/collectors/{survey_collector_id}/responses/{response_id}"
         return self._api_request("PATCH", url, payload)
     
     
