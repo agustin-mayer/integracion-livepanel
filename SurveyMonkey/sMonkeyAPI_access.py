@@ -30,10 +30,9 @@ class SurveyMonkeyAPI:
         data = self._api_request("GET", url)
         return data
     
-    def complete_responses(self, survey_id, payload_data): 
-        for response_id, payload in payload_data.items():
-            url = f"/v3/surveys/{survey_id}/responses/{response_id}"
-            self._api_request("PATCH", url, payload)
+    def complete_response(self, survey_collector_id, response_id, payload): 
+        url = f"/v3/surveys/{survey_collector_id}/responses/{response_id}"
+        return self._api_request("PATCH", url, payload)
     
     
     def get_responses(self, collector_id):

@@ -77,30 +77,3 @@ class LivepanelAPI:
         
         print(f'Dataset {file_type} saved to {file_path}')
         return file_path
-
-# Cargar las variables de entorno desde el archivo .env
-load_dotenv()
-
-# Obtener los valores de las variables de entorno
-api_key = os.getenv('LIVEPANEL_API_TOKEN')
-survey_api_url = os.getenv('LIVEPANEL_API_URL')
-
-# Imprimir las variables de entorno para depuración
-print(f"API_KEY: {api_key}")
-print(f"SURVEY_API_URL: {survey_api_url}")
-
-# Verificar que las variables de entorno no sean None
-if not api_key or not survey_api_url:
-    raise ValueError("Las variables de entorno API_KEY y SURVEY_API_URL deben estar definidas")
-
-# Ejemplo de uso:
-if __name__ == "__main__":
-    project_id = 131  # Reemplaza con el ID del proyecto que deseas obtener
-    file_type = 'Train'  # Tipo de archivo a descargar (Train, Predict, Predicted, Merged)
-
-    api = LivepanelAPI(api_key, survey_api_url)
-    try:
-        dataset_path = api.download_dataset(project_id, file_type)
-        print(f'Dataset downloaded and saved at {dataset_path}')
-    except ValueError as e:
-        print(f"Error: {e}")

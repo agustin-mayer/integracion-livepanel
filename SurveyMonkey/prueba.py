@@ -13,8 +13,6 @@ def parse_header(header):
         return None, None, None
 
 def csv_to_json(csv_file):
-    json_data = []
-
     with open(csv_file, 'r') as file:
         csv_reader = csv.reader(file)
         headers = next(csv_reader)
@@ -37,36 +35,35 @@ def csv_to_json(csv_file):
                 question_exists = False
                 for question in pages[page_id]["questions"]:
                     if question["id"] == question_id:
-                        question["answers"].append({
-                            "choice_id": choice_id,
-                            "row_id": "",
-                            "col_id": "",
-                            "other_id": "",
-                            "text": value
-                        })
                         question_exists = True
                         break
                 
                 if not question_exists:
                     pages[page_id]["questions"].append({
                         "id": question_id,
-                        "variable_id": "",
-                        "answers": [{
-                            "choice_id": choice_id,
-                            "row_id": "",
-                            "col_id": "",
-                            "other_id": "",
-                            "text": value
-                        }]
+                        "answers": []
                     })
+                
+                for question in pages[page_id]["questions"]:
+                    if question["id"] == question_id:
+                        if choice_id:
+                            question["answers"].append({
+                                "choice_id": choice_id
+                            })
+                        else:
+                            question["answers"].append({
+                                "text": value
+                            })
+                        break
             
-            user_data = {"User Response ID": user_response_id, "pages": list(pages.values())}
-            json_data.append(user_data)
+            user_data = {"pages": list(pages.values())}
+            
+            # Write each user's data to a separate JSON file
+            output_filename = f"{user_response_id}_responses.json"
+            with open(output_filename, 'w') as outfile:
+                json.dump(user_data, outfile, indent=2)
     
-    return json_data
+    print("JSON files have been created successfully.")
 
 csv_file = '430914330_responses.csv'
-json_data = csv_to_json(csv_file)
-
-with open('output.json', 'w') as outfile:
-    json.dump(json_data, outfile, indent=2)
+csv_to_json(csv_file)

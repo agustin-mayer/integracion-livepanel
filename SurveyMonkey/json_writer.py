@@ -1,7 +1,7 @@
 import json
 import csv
 
-class JSONHandler:
+class JSONWriter:
     @staticmethod
     def write_responses(file_path, responses):
         with open(file_path, 'w') as file:

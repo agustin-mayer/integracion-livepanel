@@ -1,5 +1,5 @@
 from csv_writer import write_responses
-from sm_api_access import SurveyMonkeyAPI
+from sMonkeyAPI_access import SurveyMonkeyAPI
 from dotenv import load_dotenv
 import os
 
@@ -15,7 +15,6 @@ def main():
     
     # Escribir las respuestas en un archivo CSV directamente desde los datos JSON
     write_responses(f"{sMonkey_svy_coll_id}_responses.csv", responses)
-    print("Las respuestas se guardaron con éxito.")
 
     """
     livepanel_token = os.getenv("LIVEPANEL_API_TOKEN")
