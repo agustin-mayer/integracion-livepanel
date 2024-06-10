@@ -13,19 +13,15 @@ def main():
     sMonkey_svy_coll_id = "430914330"
     responses = sMonkey_API.get_responses(sMonkey_svy_coll_id)
     
-    # Escribir las respuestas en un archivo CSV directamente desde los datos JSON
     write_responses(f"{sMonkey_svy_coll_id}_responses.csv", responses)
 
     """
     livepanel_token = os.getenv("LIVEPANEL_API_TOKEN")
     livepanel_API_url = "tools.api.livepanel.ai"
     livepanel_API = LivepanelAPI(livepanel_token,livepanel_API_url)
-
     payload = f"./sm_data/{sMonkey_svy_coll_id}_responses.csv"
     livepanelAPI.create_project(train_csv)
-
-    print("Se ha creado un nuevo proyecto en Livepanel.")
-    """
+    print("Se ha creado un nuevo proyecto en Livepanel.") """
 
 if __name__ == "__main__":
     main()

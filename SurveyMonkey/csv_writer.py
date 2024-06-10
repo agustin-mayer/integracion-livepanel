@@ -20,7 +20,7 @@ def write_responses(filename, response_data):
                             response_keys.add(f"{question_key}")
 
     # Crear la lista de encabezados con los IDs de las preguntas
-    headers = ["User Response ID"] + list(response_keys)
+    headers = ["ResponseID"] + list(response_keys)
 
     with open(filename, "w", newline="", encoding="utf-8") as csvfile:
         csv_writer = csv.writer(csvfile)
