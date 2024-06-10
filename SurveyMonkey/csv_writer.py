@@ -43,3 +43,6 @@ def write_responses(filename, response_data):
                                 response_values[f"{question_key}"] = answer["text"]
             response_row.extend(response_values.values())
             csv_writer.writerow(response_row)
+            
+    print("Las respuestas se guardaron con éxito.")
+
