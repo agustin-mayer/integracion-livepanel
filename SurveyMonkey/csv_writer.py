@@ -28,7 +28,7 @@ def write_responses(filename, response_data):
         
         for response in response_data["data"]:
             response_row = [response["id"]]
-            response_values = {key: "0" for key in response_keys}  # Inicializar todas las respuestas como "0"
+            response_values = {key: ("0" if "_" in key else "") for key in response_keys}  
             for page in response["pages"]:
                 for question in page["questions"]:
                     question_id = question["id"]

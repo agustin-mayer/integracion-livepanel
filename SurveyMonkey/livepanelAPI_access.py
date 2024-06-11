@@ -29,10 +29,9 @@ class LivepanelAPI:
         response = self.conn.getresponse()
         response_data = response.read()
         
-        # Imprimir el estado de la respuesta para depuración
+        # depuración
         print(f"Response status: {response.status}")
 
-        # Verificar si la respuesta está vacía
         if not response_data:
             raise ValueError("Empty response received from the API")
 
