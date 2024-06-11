@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import ssl
 
-# Desactivar la verificación del certificado SSL
+# Desactiva la verificación del certificado SSL
 ssl._create_default_https_context = ssl._create_unverified_context
 
 class LivepanelAPI:
@@ -18,7 +18,6 @@ class LivepanelAPI:
         self.conn = http.client.HTTPSConnection(survey_api_url)
 
     def _api_request(self, method, url, payload=None):
-        # Imprimir la URL completa para depuración
         full_url = f"https://{self.conn.host}{url}"
         print(f"Making request to: {full_url}")
 
