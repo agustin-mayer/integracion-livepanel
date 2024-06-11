@@ -33,7 +33,6 @@ def process_xml_file(xml_file, headers):
     for loop in root.findall('.//Loop'):
         loop_question_id = loop.attrib['QuestionId']
         header_map[loop_question_id] = '1'
-        # Marcar los ítems dentro del loop
         for item in loop.findall('.//Item'):
             modality_id = item.attrib['modalityId']
             value = '1' 
