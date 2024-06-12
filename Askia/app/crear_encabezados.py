@@ -2,6 +2,24 @@ import csv
 import xml.etree.ElementTree as ET
 from app.utils import detect_encoding
 
+def get_modalities_recursive(question_id, root):
+    modalities = []
+    question = root.find(f'.//Question[@ID="{question_id}"]')
+    
+    if question is not None:
+        modalities_element = question.find('Modalities')
+        if modalities_element is not None:
+            link_source = modalities_element.attrib.get('LinkSource')
+            if link_source:
+                linked_question_id = link_source.strip('#')
+                modalities += get_modalities_recursive(linked_question_id, root)
+            else:
+                for modality in modalities_element.findall('Modality'):
+                    modality_id = modality.attrib['ID']
+                    modalities.append(modality_id)
+    
+    return modalities
+
 def parse_survey_structure(xml_file):
     encoding = detect_encoding(xml_file)
     tree = ET.parse(xml_file, parser=ET.XMLParser(encoding=encoding))
@@ -14,19 +32,10 @@ def parse_survey_structure(xml_file):
         question_id = question.attrib['ID']
         headers.append(question_id)
         
-        # Si la pregunta tiene modalidades, agregar encabezados adicionales
-        modalities = question.find('Modalities')
-        if modalities is not None:
-            link_source = modalities.attrib.get('LinkSource')
-            if link_source:
-                linked_question_id = link_source.strip('#')
-                for modality in root.findall(f'.//Question[@ID="{linked_question_id}"]//Modality'):
-                    modality_id = modality.attrib['ID']
-                    headers.append(f'Q{question_id}_{modality_id}')
-            else:
-                for modality in modalities.findall('Modality'):
-                    modality_id = modality.attrib['ID']
-                    headers.append(f'Q{question_id}_{modality_id}')
+        # Obtener modalidades recursivamente si existen
+        modalities = get_modalities_recursive(question_id, root)
+        for modality_id in modalities:
+            headers.append(f'Q{question_id}_{modality_id}')
     
     return headers
 
@@ -39,3 +48,6 @@ def crear_encabezados(xml_file_path, csv_file_path):
     headers = parse_survey_structure(xml_file_path)
     write_to_csv(headers, csv_file_path)
     print("El archivo CSV inicial con los encabezados se ha generado correctamente.")
+
+# Ejemplo de uso:
+# crear_encabezados('ruta_al_archivo_xml.xml', 'ruta_al_archivo_csv.csv')
