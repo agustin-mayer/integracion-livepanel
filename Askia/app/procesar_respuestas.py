@@ -27,8 +27,18 @@ def process_xml_file(xml_file, headers):
     for question_id in headers[1:]:
         answer = root.find(f'.//Answer[@QuestionId="{question_id}"]')
         if answer is not None:
-            header_map[question_id] = '1' if answer.find('Value') is None else answer.find('Value').text
-
+            values = [val.text for val in answer.findall('Value')]
+            if values:
+                for value in values:
+                    key = f'Q{question_id}_{value}'
+                    if key in header_map:
+                        header_map[key] = '1'
+                    else:
+                        print(f"Log: Columna para {key} no encontrada. Registrando valor en la columna principal {question_id}.")
+                        header_map[question_id] = value
+            else:
+                header_map[question_id] = '1' if answer.find('Value') is None else answer.find('Value').text
+                
     # Procesar loops
     for loop in root.findall('.//Loop'):
         loop_question_id = loop.attrib['QuestionId']
