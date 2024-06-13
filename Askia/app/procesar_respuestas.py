@@ -7,6 +7,11 @@ def load_survey_structure(csv_file):
         reader = csv.reader(file)
         headers = next(reader)
         return headers
+    
+def clean_text(text):
+    if text:
+        return text.replace('\n', '').replace('\r', '').strip()
+    return text
 
 def process_xml_file(xml_file, headers):
     encoding = detect_encoding(xml_file)
@@ -27,7 +32,7 @@ def process_xml_file(xml_file, headers):
     for question_id in headers[1:]:
         answer = root.find(f'.//Answer[@QuestionId="{question_id}"]')
         if answer is not None:
-            values = [val.text for val in answer.findall('Value')]
+            values = [clean_text(val.text) for val in answer.findall('Value')]
             if values:
                 for value in values:
                     key = f'Q{question_id}_{value}'
@@ -37,7 +42,7 @@ def process_xml_file(xml_file, headers):
                         print(f"Log: Columna para {key} no encontrada. Registrando valor en la columna principal {question_id}.")
                         header_map[question_id] = value
             else:
-                header_map[question_id] = '1' if answer.find('Value') is None else answer.find('Value').text
+                header_map[question_id] = '1' if answer.find('Value') is None else clean_text(answer.find('Value').text)
                 
     # Procesar loops
     for loop in root.findall('.//Loop'):
@@ -48,7 +53,7 @@ def process_xml_file(xml_file, headers):
             for answer in item.findall('.//Answer'):
                 found_answer = True
                 sub_question_id = answer.attrib['QuestionId']
-                value = '1' if answer.find('Value') is None else answer.find('Value').text
+                value = '1' if answer.find('Value') is None else clean_text(answer.find('Value').text)
                 loop_header_detail = f'Q{loop_question_id}.{modality_id}.{sub_question_id}_{value}'
                 loop_header = f'Q{loop_question_id}.{modality_id}_{sub_question_id}'
                 if loop_header_detail in header_map:
