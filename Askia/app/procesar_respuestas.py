@@ -44,12 +44,29 @@ def process_xml_file(xml_file, headers):
         loop_question_id = loop.attrib['QuestionId']
         for item in loop.findall('.//Item'):
             modality_id = item.attrib['modalityId']
-            value = '1' 
+            found_answer = False
             for answer in item.findall('.//Answer'):
+                found_answer = True
+                sub_question_id = answer.attrib['QuestionId']
                 value = '1' if answer.find('Value') is None else answer.find('Value').text
-            loop_header = f'Q{loop_question_id}_{modality_id}'
-            if loop_header in header_map:
+                loop_header_detail = f'Q{loop_question_id}.{modality_id}.{sub_question_id}_{value}'
+                loop_header = f'Q{loop_question_id}.{modality_id}_{sub_question_id}'
+                if loop_header_detail in header_map:
+                    header_map[loop_header_detail] = '1'
+                elif loop_header in header_map:
                     header_map[loop_header] = value
+                else:
+                    print(f"Log: Columna para {loop_header_detail} o {loop_header} no encontrada. Registrando valor en la columna principal {loop_question_id}.")
+                    header_map[loop_question_id] = value
+            
+            if not found_answer:
+                # Si no se encuentran respuestas dentro del Item, registrar '1' en Q{loop_question_id}_{modality_id}
+                loop_header = f'Q{loop_question_id}_{modality_id}'
+                if loop_header in header_map:
+                    header_map[loop_header] = '1'
+                else:
+                    print(f"Log: Columna para {loop_header} no encontrada. Registrando valor en la columna principal {loop_question_id}.")
+                    header_map[loop_question_id] = '1'
 
     row.extend(header_map[header] for header in headers[1:])
     
