@@ -3,9 +3,9 @@ from app.procesar_archivos import process_xml_files_in_folder
 
 def main():
     # Rutas de los archivos
-    xml_file_path = "./data/SurveyStructure.xml"
-    csv_file_path = "./data/train_dataset.csv"
-    folder_path = "./data/xml_responses"
+    xml_file_path = "./data/dataset2/SurveyStructure.xml"
+    csv_file_path = "./data/dataset2/train_dataset2.csv"
+    folder_path = "./data/dataset2/xml_responses"
 
     # Crear encabezados
     crear_encabezados(xml_file_path, csv_file_path)

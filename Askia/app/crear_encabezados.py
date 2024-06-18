@@ -15,8 +15,11 @@ def get_modalities_recursive(question_id, root):
                 modalities += get_modalities_recursive(linked_question_id, root)
             else:
                 for modality in modalities_element.findall('Modality'):
-                    modality_id = modality.attrib['ID']
-                    modalities.append(modality_id)
+                    modality_id = modality.attrib.get('ID')
+                    if modality_id:
+                        modalities.append(modality_id)
+                    else:
+                        print(f"Modality without ID attribute in question {question_id}")
     
     return modalities
 
@@ -29,7 +32,11 @@ def parse_survey_structure(xml_file):
     
     # Recorrer las preguntas y crear encabezados para el CSV
     for question in root.findall('.//Question'):
-        question_id = question.attrib['ID']
+        question_id = question.attrib.get('ID')
+        if not question_id:
+            print(f"Question without ID attribute found")
+            continue
+        
         headers.append(question_id)
         
         # Obtener modalidades recursivamente si existen
@@ -42,12 +49,18 @@ def parse_survey_structure(xml_file):
             for modality_id in modalities:
                 headers.append(f'Q{question_id}_{modality_id}')  # Encabezado para la modalidad dentro del loop
                 for sub_question in question.findall('.//Questions/Question'):
-                    sub_question_id = sub_question.attrib['ID']
+                    sub_question_id = sub_question.attrib.get('ID')
+                    if not sub_question_id:
+                        print(f"Subquestion without ID attribute found in question {question_id}")
+                        continue
                     headers.append(f'Q{question_id}.{modality_id}_{sub_question_id}')
                     # Obtener submodalidades si existen
                     for submodality in sub_question.findall('.//Modality'):
-                        submodality_id = submodality.attrib['ID']
-                        headers.append(f'Q{question_id}.{modality_id}.{sub_question_id}_{submodality_id}')
+                        submodality_id = submodality.attrib.get('ID')
+                        if submodality_id:
+                            headers.append(f'Q{question_id}.{modality_id}.{sub_question_id}_{submodality_id}')
+                        else:
+                            print(f"Submodality without ID attribute found in subquestion {sub_question_id} of question {question_id}")
     
     return headers
 
