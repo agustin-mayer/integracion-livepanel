@@ -24,6 +24,10 @@ def csv_to_json_and_update(csv_file, api,survey_collector_id):
                 header = headers[i]
                 page_id, question_id, choice_id = parse_header(header)
 
+                if (value == 0):
+                    continue
+                print(value)
+
                 if not page_id or not question_id:
                     print(f"Skipping invalid header at column {i}: {header}")
                     continue
@@ -58,4 +62,3 @@ def csv_to_json_and_update(csv_file, api,survey_collector_id):
             user_data = {"pages": list(pages.values())}
             
             response = api.complete_response(survey_collector_id, user_response_id, user_data)
-            print(f"Response for user {user_response_id}: {response}")

@@ -19,7 +19,7 @@ def main():
     api = SurveyMonkeyAPI(sMonkey_token, sMonkey_API_url)
 
     survey_collector_id = "430914330" 
-    csv_file = f'{survey_collector_id}_responses.csv' #luego payload de livepanel
+    csv_file = f'./data/{survey_collector_id}_responses.csv' #luego payload de livepanel
 
     csv_to_json_and_update(csv_file, api, survey_collector_id)
 
