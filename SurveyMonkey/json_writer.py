@@ -2,16 +2,23 @@ import csv
 
 def parse_header(header):
     if header == 'ResponseID':
-        return None, None, None
+        return None, None, None, None
     try:
         page_part, question_part = header.split('.')
         page_id = page_part[1:]
         question_parts = question_part.split('_')
         question_id = question_parts[0][1:]
-        choice_id = question_parts[1] if len(question_parts) > 1 else ""
-        return page_id, question_id, choice_id
+        if len(question_parts) > 1:
+            if question_parts[1].startswith('R'):
+                row_id = question_parts[1][1:]
+                return page_id, question_id, None, row_id
+            else:
+                choice_id = question_parts[1]
+                return page_id, question_id, choice_id, None
+        else:
+            return page_id, question_id, "", None
     except ValueError:
-        return None, None, None
+        return None, None, None, None
 
 def csv_to_json_and_update(csv_file, api, survey_collector_id):
     with open(csv_file, 'r') as file:
@@ -22,7 +29,7 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
             pages = {}
             
             for header, value in row.items():
-                page_id, question_id, choice_id = parse_header(header)
+                page_id, question_id, choice_id, row_id = parse_header(header)
                 
                 if not page_id or not question_id:
                     continue
@@ -40,7 +47,9 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
                     question = {"id": question_id, "answers": []}
                     pages[page_id]["questions"].append(question)
                 
-                if choice_id:
+                if row_id:
+                    question["answers"].append({"row_id": row_id, "text": value})
+                elif choice_id:
                     question["answers"].append({"choice_id": choice_id})
                 else:
                     question["answers"].append({"text": value})
@@ -53,3 +62,6 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
             response = api.complete_response(survey_collector_id, user_response_id, user_data)
             print(f"API Response: {response}")
             print("----------------------------")
+
+# Example usage
+# csv_to_json_and_update('path_to_csv_file.csv', api_instance, 'survey_collector_id')
