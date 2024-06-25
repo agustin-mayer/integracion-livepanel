@@ -12,8 +12,9 @@ def main():
     
     sMonkey_svy_coll_id = "430914330"
     responses = sMonkey_API.get_responses(sMonkey_svy_coll_id)
+    print(responses)
     
-    write_responses(f"{sMonkey_svy_coll_id}_responses.csv", responses)
+    write_responses(f"./data/{sMonkey_svy_coll_id}_responses.csv", responses)
 
     """
     livepanel_token = os.getenv("LIVEPANEL_API_TOKEN")
