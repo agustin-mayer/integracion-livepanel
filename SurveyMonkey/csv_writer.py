@@ -19,7 +19,7 @@ def write_responses(filename, response_data):
                             choice_questions.add(question_key)
                         elif "text" in answer:
                             if "row_id" in answer:
-                                response_keys.add(f"{question_key}_{answer['row_id']}")
+                                response_keys.add(f"{question_key}_R{answer['row_id']}")
                             else:
                                 response_keys.add(f"{question_key}")
 
@@ -44,7 +44,7 @@ def write_responses(filename, response_data):
                                 response_values[f"{question_key}_{answer['choice_id']}"] = "1"
                             elif "text" in answer:
                                 if "row_id" in answer:
-                                    response_values[f"{question_key}_{answer['row_id']}"] = answer["text"]
+                                    response_values[f"{question_key}_R{answer['row_id']}"] = answer["text"]
                                 else:
                                     response_values[f"{question_key}"] = answer["text"]
             response_row.extend([response_values[key] for key in sorted(response_keys)])
