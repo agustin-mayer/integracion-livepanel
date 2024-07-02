@@ -34,7 +34,6 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
                 if not page_id or not question_id:
                     continue
                 
-                # Skip answers with value 0 or empty string
                 if value == '0' or value.strip() == '':
                     continue
                 
@@ -56,12 +55,9 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
             
             user_data = {"pages": list(pages.values())}
             
-            print(f"Updating response for user {user_response_id}")
+            print(f"Actualizando respuesta del usuario: {user_response_id}")
             print(f"Data: {user_data}")
             
             response = api.complete_response(survey_collector_id, user_response_id, user_data)
             print(f"API Response: {response}")
             print("----------------------------")
-
-# Example usage
-# csv_to_json_and_update('path_to_csv_file.csv', api_instance, 'survey_collector_id')

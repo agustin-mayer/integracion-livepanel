@@ -5,7 +5,7 @@ def write_responses(filename, response_data):
     response_keys = set()
     choice_questions = set()
 
-    # Recorrer las respuestas y almacenar las claves de respuesta únicas
+    # Se obtienen los ID de las preguntas para el encabezado de columna
     for response in response_data["data"]:
         for page in response["pages"]:
             for question in page["questions"]:
@@ -23,9 +23,10 @@ def write_responses(filename, response_data):
                             else:
                                 response_keys.add(f"{question_key}")
 
-    # Crear la lista de encabezados con los IDs de las preguntas
+    
     headers = ["ResponseID"] + sorted(list(response_keys))
 
+    #se cargan las respuestas en el CSV
     with open(filename, "w", newline="", encoding="utf-8") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(headers)
