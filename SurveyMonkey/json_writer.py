@@ -1,4 +1,10 @@
 import csv
+import json
+
+def save_original_responses(json_path, responses):
+    with open(json_path, 'w') as json_file:
+        json.dump(responses, json_file, indent=4)
+    print(f"Respuestas JSON guardadas en {json_path}")
 
 def parse_header(header):
     if header == 'ResponseID':
