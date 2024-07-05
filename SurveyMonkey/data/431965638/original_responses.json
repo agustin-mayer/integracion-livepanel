@@ -1,0 +1,652 @@
+{
+    "data": [
+        {
+            "id": "114636456073",
+            "recipient_id": "",
+            "collection_mode": "default",
+            "response_status": "completed",
+            "custom_value": "",
+            "first_name": "",
+            "last_name": "",
+            "email_address": "",
+            "ip_address": "190.1.40.177",
+            "logic_path": {},
+            "metadata": {
+                "contact": {}
+            },
+            "page_path": [],
+            "collector_id": "431965638",
+            "survey_id": "414025528",
+            "custom_variables": {},
+            "edit_url": "https://www.surveymonkey.com/r/?sm=pn9IaKjga0dl_2BZhiGypLIx1yU7ucn5GzR5Jtpw0mFjr_2Foce09QG41L37_2FyRPsswu",
+            "analyze_url": "https://www.surveymonkey.com/analyze/browse/cUO6hNKhWvXep1H74z_2BiFxfmcjxqkCLxWPWRfnn6goI_3D?respondent_id=114636456073",
+            "total_time": 97,
+            "date_modified": "2024-07-02T19:38:48+00:00",
+            "date_created": "2024-07-02T19:37:11+00:00",
+            "href": "https://api.surveymonkey.com/v3/collectors/431965638/responses/114636456073",
+            "pages": [
+                {
+                    "id": "55721788",
+                    "questions": [
+                        {
+                            "id": "197797510",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273614"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197805159",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424323569",
+                                    "score": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197797512",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273625"
+                                },
+                                {
+                                    "choice_id": "1424273626"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197804630",
+                            "answers": [
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424318173",
+                                    "score": 2
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802722",
+                            "answers": [
+                                {
+                                    "other_id": "1424327204",
+                                    "text": "parlantes"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802930",
+                            "answers": [
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424307081",
+                                    "score": 3
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802124",
+                            "answers": [
+                                {
+                                    "choice_id": "1424302126",
+                                    "row_id": "1424302116",
+                                    "choice_metadata": {
+                                        "weight": "100"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197803689",
+                            "answers": [
+                                {
+                                    "choice_id": "1424311931"
+                                },
+                                {
+                                    "choice_id": "1424311932"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197806279",
+                            "answers": [
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424334007",
+                                    "score": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "55722192",
+                    "questions": [
+                        {
+                            "id": "197804479",
+                            "answers": [
+                                {
+                                    "tag_data": [],
+                                    "text": "nada para comentar"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "quiz_results": {
+                "correct": 2,
+                "incorrect": 1,
+                "partially_correct": 1,
+                "total_questions": 4,
+                "score": 7,
+                "total_score": 16
+            }
+        },
+        {
+            "id": "114636456872",
+            "recipient_id": "",
+            "collection_mode": "default",
+            "response_status": "completed",
+            "custom_value": "",
+            "first_name": "",
+            "last_name": "",
+            "email_address": "",
+            "ip_address": "190.1.40.177",
+            "logic_path": {},
+            "metadata": {
+                "contact": {}
+            },
+            "page_path": [],
+            "collector_id": "431965638",
+            "survey_id": "414025528",
+            "custom_variables": {},
+            "edit_url": "https://www.surveymonkey.com/r/?sm=c6nkGX_2F7MRPQBKLtSrpsWYmmaIu86jI9LuwITlNE4ir2HpDkizv8nwZ_2B3nxkw5eT",
+            "analyze_url": "https://www.surveymonkey.com/analyze/browse/cUO6hNKhWvXep1H74z_2BiFxfmcjxqkCLxWPWRfnn6goI_3D?respondent_id=114636456872",
+            "total_time": 61,
+            "date_modified": "2024-07-02T19:40:09+00:00",
+            "date_created": "2024-07-02T19:39:08+00:00",
+            "href": "https://api.surveymonkey.com/v3/collectors/431965638/responses/114636456872",
+            "pages": [
+                {
+                    "id": "55721788",
+                    "questions": [
+                        {
+                            "id": "197797510",
+                            "answers": [
+                                {
+                                    "other_id": "1424323020",
+                                    "text": "excelentemente pobre"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197805159",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424323569",
+                                    "score": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802722",
+                            "answers": [
+                                {
+                                    "choice_id": "1424305776"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802124",
+                            "answers": [
+                                {
+                                    "choice_id": "1424302117",
+                                    "row_id": "1424302116",
+                                    "choice_metadata": {
+                                        "weight": "-100"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197803689",
+                            "answers": [
+                                {
+                                    "choice_id": "1424311932"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197806279",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424335991",
+                                    "score": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "55722192",
+                    "questions": [
+                        {
+                            "id": "197804479",
+                            "answers": [
+                                {
+                                    "tag_data": [],
+                                    "text": "estupendo dia"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "quiz_results": {
+                "correct": 0,
+                "incorrect": 1,
+                "partially_correct": 1,
+                "total_questions": 4,
+                "score": 1,
+                "total_score": 16
+            }
+        },
+        {
+            "id": "114636457610",
+            "recipient_id": "",
+            "collection_mode": "default",
+            "response_status": "completed",
+            "custom_value": "",
+            "first_name": "",
+            "last_name": "",
+            "email_address": "",
+            "ip_address": "190.1.40.177",
+            "logic_path": {},
+            "metadata": {
+                "contact": {}
+            },
+            "page_path": [],
+            "collector_id": "431965638",
+            "survey_id": "414025528",
+            "custom_variables": {},
+            "edit_url": "https://www.surveymonkey.com/r/?sm=8OEflw1pRh2KUq2khFVTnBvhTwlChiqrPQIdVNX3bqZ79swX2m6xpxKCwYNFxPvy",
+            "analyze_url": "https://www.surveymonkey.com/analyze/browse/cUO6hNKhWvXep1H74z_2BiFxfmcjxqkCLxWPWRfnn6goI_3D?respondent_id=114636457610",
+            "total_time": 34,
+            "date_modified": "2024-07-02T19:41:02+00:00",
+            "date_created": "2024-07-02T19:40:27+00:00",
+            "href": "https://api.surveymonkey.com/v3/collectors/431965638/responses/114636457610",
+            "pages": [
+                {
+                    "id": "55721788",
+                    "questions": [
+                        {
+                            "id": "197797510",
+                            "answers": [
+                                {
+                                    "choice_id": "1424323019"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197805159",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424323569",
+                                    "score": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197797512",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273623"
+                                },
+                                {
+                                    "choice_id": "1424273625"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197804630",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424318171",
+                                    "score": 0
+                                },
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424318172",
+                                    "score": 1
+                                },
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424318174",
+                                    "score": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802722",
+                            "answers": [
+                                {
+                                    "choice_id": "1424305778"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802930",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424307082",
+                                    "score": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197803689",
+                            "answers": [
+                                {
+                                    "choice_id": "1424311931"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197806279",
+                            "answers": [
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424334007",
+                                    "score": 2
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "55722192",
+                    "questions": []
+                }
+            ],
+            "quiz_results": {
+                "correct": 1,
+                "incorrect": 1,
+                "partially_correct": 2,
+                "total_questions": 4,
+                "score": 5,
+                "total_score": 16
+            }
+        },
+        {
+            "id": "114637927511",
+            "recipient_id": "",
+            "collection_mode": "default",
+            "response_status": "completed",
+            "custom_value": "",
+            "first_name": "",
+            "last_name": "",
+            "email_address": "",
+            "ip_address": "181.197.210.241",
+            "logic_path": {},
+            "metadata": {
+                "contact": {}
+            },
+            "page_path": [],
+            "collector_id": "431965638",
+            "survey_id": "414025528",
+            "custom_variables": {},
+            "edit_url": "https://www.surveymonkey.com/r/?sm=_2Fmkdh0CKhpxnoh4syUvloLs6DUvJFpEti31gFwYIOBDwkmA7bwRb2_2FcxzsGNKN9U",
+            "analyze_url": "https://www.surveymonkey.com/analyze/browse/cUO6hNKhWvXep1H74z_2BiFxfmcjxqkCLxWPWRfnn6goI_3D?respondent_id=114637927511",
+            "total_time": 16,
+            "date_modified": "2024-07-04T19:11:03+00:00",
+            "date_created": "2024-07-04T19:10:47+00:00",
+            "href": "https://api.surveymonkey.com/v3/collectors/431965638/responses/114637927511",
+            "pages": [
+                {
+                    "id": "55721788",
+                    "questions": [
+                        {
+                            "id": "197797510",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273616"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197805159",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424323561",
+                                    "score": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197797512",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273625"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802722",
+                            "answers": [
+                                {
+                                    "choice_id": "1424305776"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197803689",
+                            "answers": [
+                                {
+                                    "choice_id": "1424311931"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "55722192",
+                    "questions": [
+                        {
+                            "id": "197804479",
+                            "answers": [
+                                {
+                                    "tag_data": [],
+                                    "text": "boooca"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "quiz_results": {
+                "correct": 0,
+                "incorrect": 1,
+                "partially_correct": 0,
+                "total_questions": 4,
+                "score": 0,
+                "total_score": 16
+            }
+        },
+        {
+            "id": "114637928054",
+            "recipient_id": "",
+            "collection_mode": "default",
+            "response_status": "completed",
+            "custom_value": "",
+            "first_name": "",
+            "last_name": "",
+            "email_address": "",
+            "ip_address": "181.197.210.241",
+            "logic_path": {},
+            "metadata": {
+                "contact": {}
+            },
+            "page_path": [],
+            "collector_id": "431965638",
+            "survey_id": "414025528",
+            "custom_variables": {},
+            "edit_url": "https://www.surveymonkey.com/r/?sm=jHt9vzI0BoFytGb8nG3wHv2V4IjHRGn2slq5zcyRs7SA56jh8dPl4cYihyt4mz6C",
+            "analyze_url": "https://www.surveymonkey.com/analyze/browse/cUO6hNKhWvXep1H74z_2BiFxfmcjxqkCLxWPWRfnn6goI_3D?respondent_id=114637928054",
+            "total_time": 66,
+            "date_modified": "2024-07-04T19:12:19+00:00",
+            "date_created": "2024-07-04T19:11:12+00:00",
+            "href": "https://api.surveymonkey.com/v3/collectors/431965638/responses/114637928054",
+            "pages": [
+                {
+                    "id": "55721788",
+                    "questions": [
+                        {
+                            "id": "197797510",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273612"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197805159",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424323569",
+                                    "score": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197797512",
+                            "answers": [
+                                {
+                                    "choice_id": "1424273622"
+                                },
+                                {
+                                    "choice_id": "1424273623"
+                                },
+                                {
+                                    "choice_id": "1424273624"
+                                },
+                                {
+                                    "choice_id": "1424273626"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197804630",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424318171",
+                                    "score": 0
+                                },
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424318173",
+                                    "score": 2
+                                },
+                                {
+                                    "is_correct": true,
+                                    "choice_id": "1424318174",
+                                    "score": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802722",
+                            "answers": [
+                                {
+                                    "other_id": "1424327204",
+                                    "text": "tijeras"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802930",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424307083",
+                                    "score": 2
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197802124",
+                            "answers": [
+                                {
+                                    "choice_id": "1424302118",
+                                    "row_id": "1424302116",
+                                    "choice_metadata": {
+                                        "weight": "-100"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197803689",
+                            "answers": [
+                                {
+                                    "choice_id": "1424311931"
+                                },
+                                {
+                                    "choice_id": "1424311932"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "197806279",
+                            "answers": [
+                                {
+                                    "is_correct": false,
+                                    "choice_id": "1424335991",
+                                    "score": 1
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "55722192",
+                    "questions": [
+                        {
+                            "id": "197804479",
+                            "answers": [
+                                {
+                                    "tag_data": [],
+                                    "text": "5mentarios"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "quiz_results": {
+                "correct": 0,
+                "incorrect": 1,
+                "partially_correct": 3,
+                "total_questions": 4,
+                "score": 6,
+                "total_score": 16
+            }
+        }
+    ],
+    "per_page": 50,
+    "page": 1,
+    "total": 5,
+    "links": {
+        "self": "https://api.surveymonkey.com/v3/collectors/431965638/responses/bulk?per_page=50&page=1"
+    }
+}

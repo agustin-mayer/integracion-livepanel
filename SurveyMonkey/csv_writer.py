@@ -1,7 +1,7 @@
 import csv
 import json
 
-def write_responses(filename, response_data):
+def write_responses(csv_path, response_data):
     response_keys = set()
     choice_questions = set()
 
@@ -27,7 +27,7 @@ def write_responses(filename, response_data):
     headers = ["ResponseID"] + sorted(list(response_keys))
 
     #se cargan las respuestas en el CSV
-    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
+    with open(csv_path, "w", newline="", encoding="utf-8") as csvfile:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerow(headers)
         
@@ -50,4 +50,4 @@ def write_responses(filename, response_data):
                                     response_values[f"{question_key}"] = answer["text"]
             response_row.extend([response_values[key] for key in sorted(response_keys)])
             csv_writer.writerow(response_row)
-    print("Las respuestas se guardaron con éxito.")
+    print(f"Respuestas CSV guardadas en {csv_path}")

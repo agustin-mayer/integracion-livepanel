@@ -12,6 +12,9 @@ def main():
     
     sMonkey_svy_coll_id = "430914330"
     
+    sMonkey_svy2_coll_id = "431991261"
+    sMonkey_svy3_coll_id = "431965638"
+    sMonkey_svy4_coll_id = "457016504"
     directory = f"./data/{sMonkey_svy4_coll_id}/"
 
     responses = sMonkey_API.get_responses(sMonkey_svy4_coll_id)
