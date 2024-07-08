@@ -2,3 +2,4 @@
 __pycache__
 Askia\app\__pycache__
 *.pyc
+/SurveyMonkey/__pycache__
