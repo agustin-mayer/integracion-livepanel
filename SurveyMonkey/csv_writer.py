@@ -15,7 +15,12 @@ def write_responses(csv_path, response_data):
                 if "answers" in question:
                     for answer in question["answers"]:
                         if "choice_id" in answer:
-                            response_keys.add(f"{question_key}_{answer['choice_id']}")
+                            if "row_id" in answer:
+                                response_keys.add(f"{question_key}.R{answer['row_id']}_{answer['choice_id']}")
+                                print(f"row con choice: {question_key}.R{answer['row_id']}_{answer['choice_id']}")
+                                question_key += f".R{answer['row_id']}"
+                            else:
+                                response_keys.add(f"{question_key}_{answer['choice_id']}")
                             choice_questions.add(question_key)
                         elif "text" in answer:
                             if "row_id" in answer:
@@ -42,7 +47,10 @@ def write_responses(csv_path, response_data):
                     if "answers" in question:
                         for answer in question["answers"]:
                             if "choice_id" in answer:
-                                response_values[f"{question_key}_{answer['choice_id']}"] = "1"
+                                if "row_id" in answer:
+                                    response_values[f"{question_key}.R{answer['row_id']}_{answer['choice_id']}"] = "1"
+                                else:
+                                    response_values[f"{question_key}_{answer['choice_id']}"] = "1"
                             elif "text" in answer:
                                 if "row_id" in answer:
                                     response_values[f"{question_key}_R{answer['row_id']}"] = answer["text"]
