@@ -25,6 +25,8 @@ def write_responses(csv_path, response_data):
                         elif "text" in answer:
                             if "row_id" in answer:
                                 response_keys.add(f"{question_key}_R{answer['row_id']}")
+                            elif "other_id" in answer:
+                                response_keys.add(f"{question_key}_O{answer['other_id']}")
                             else:
                                 response_keys.add(f"{question_key}")
 
@@ -54,6 +56,8 @@ def write_responses(csv_path, response_data):
                             elif "text" in answer:
                                 if "row_id" in answer:
                                     response_values[f"{question_key}_R{answer['row_id']}"] = answer["text"]
+                                elif "other_id" in answer:
+                                    response_values[f"{question_key}_O{answer['other_id']}"] = answer["text"]
                                 else:
                                     response_values[f"{question_key}"] = answer["text"]
             response_row.extend([response_values[key] for key in sorted(response_keys)])
