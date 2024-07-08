@@ -18,13 +18,15 @@ def main():
     sMonkey_API_url = "api.surveymonkey.com"
     api = SurveyMonkeyAPI(sMonkey_token, sMonkey_API_url)
 
-    survey_collector_id = "430914330" 
-    csv_file = f'./data/{survey_collector_id}_responses.csv' #luego payload de livepanel
+    collector_id_1 = "430914330"
+    collector_id_2 = "431991261"
+    collector_id_3 = "431965638"
+    collector_id_4 = "457016504" 
 
-    csv_to_json_and_update(csv_file, api, survey_collector_id)
+    csv_file = f'./data/{collector_id_3}/original_responses.csv'
 
+    csv_to_json_and_update(csv_file, api, collector_id_3)
     
-    print("Respuestas actualizadas con exito.")
     
     
 if __name__ == "__main__":

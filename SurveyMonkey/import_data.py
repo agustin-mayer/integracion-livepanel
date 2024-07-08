@@ -10,14 +10,14 @@ def main():
     sMonkey_API_url = "api.surveymonkey.com"
     sMonkey_API = SurveyMonkeyAPI(sMonkey_token, sMonkey_API_url)
     
-    sMonkey_svy_coll_id = "430914330"
-    sMonkey_svy2_coll_id = "431991261"
-    sMonkey_svy3_coll_id = "431965638"
-    sMonkey_svy4_coll_id = "457016504"
+    collector_id_1 = "430914330"
+    collector_id_2 = "431991261"
+    collector_id_3 = "431965638"
+    collector_id_4 = "457016504"
 
-    directory = f"./data/{sMonkey_svy3_coll_id}/"
+    directory = f"./data/{collector_id_3}/"
 
-    responses = sMonkey_API.get_responses(sMonkey_svy3_coll_id)
+    responses = sMonkey_API.get_responses(collector_id_3)
 
     if not os.path.exists(directory):
         os.makedirs(directory)
