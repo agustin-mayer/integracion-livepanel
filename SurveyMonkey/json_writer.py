@@ -8,21 +8,37 @@ def save_original_responses(json_path, responses):
 
 def parse_header(header):
     if header == 'ResponseID':
-        return None, None, None, None
+        return None, None, None, None, None
     try:
-        page_part, question_part = header.split('.')
+        parts = header.split('.')  # Salida: ['P1', 'Q2_CID'] o ['P1', 'Q2', 'R3_CID']
+        
+        page_part = parts[0]
+        question_part = parts[1]
+        row_part = parts[2] if len(parts) > 2 else None
+
         page_id = page_part[1:]
-        question_parts = question_part.split('_')
-        question_id = question_parts[0][1:]
-        if len(question_parts) > 1:
-            if question_parts[1].startswith('R'):
-                row_id = question_parts[1][1:]
-                return page_id, question_id, None, row_id
-            else:
-                choice_id = question_parts[1]
-                return page_id, question_id, choice_id, None
+
+        if (row_part):
+            question_id = question_part[1:]
+            row_parts = row_part.split('_')
+            row_id = row_parts[0][1:]
+            choice_id = row_parts[1]
+            return page_id, question_id, choice_id, row_id, None
         else:
-            return page_id, question_id, "", None
+            question_parts = question_part.split('_')
+            question_id = question_parts[0][1:]
+            if len(question_parts) > 1:
+                if question_parts[1].startswith('R'):
+                    row_id = question_parts[1][1:]
+                    return page_id, question_id, None, row_id, None
+                elif question_parts[1].startswith('O'):
+                    other_id = question_parts[1][1:]
+                    return page_id, question_id, None, None, other_id
+                else:
+                    choice_id = question_parts[1]
+                    return page_id, question_id, choice_id, None, None
+            else:
+                return page_id, question_id, "", None, None
     except ValueError:
         return None, None, None, None
 
@@ -35,7 +51,7 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
             pages = {}
             
             for header, value in row.items():
-                page_id, question_id, choice_id, row_id = parse_header(header)
+                page_id, question_id, choice_id, row_id, other_id = parse_header(header)
                 
                 if not page_id or not question_id:
                     continue
@@ -53,7 +69,12 @@ def csv_to_json_and_update(csv_file, api, survey_collector_id):
                     pages[page_id]["questions"].append(question)
                 
                 if row_id:
-                    question["answers"].append({"row_id": row_id, "text": value})
+                    if choice_id: #preguntas net promoter score
+                        question["answers"].append({"row_id": row_id, "choice_id": choice_id})
+                    else:
+                        question["answers"].append({"row_id": row_id, "text": value})
+                elif other_id:
+                    question["answers"].append({"other_id": other_id, "text": value})
                 elif choice_id:
                     question["answers"].append({"choice_id": choice_id})
                 else:
