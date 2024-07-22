@@ -47,18 +47,18 @@ def parse_survey_structure(xml_file):
         # Si la pregunta es un loop, agregar encabezados para las preguntas internas y submodalidades
         if question.attrib.get('ElementType') == 'loop':
             for modality_id in modalities:
-                headers.append(f'Q{question_id}_{modality_id}')  # Encabezado para la modalidad dentro del loop
+                headers.append(f'L{question_id}_{modality_id}')  # Encabezado para la modalidad dentro del loop
                 for sub_question in question.findall('.//Questions/Question'):
                     sub_question_id = sub_question.attrib.get('ID')
                     if not sub_question_id:
                         print(f"Subquestion without ID attribute found in question {question_id}")
                         continue
-                    headers.append(f'Q{question_id}.{modality_id}_{sub_question_id}')
+                    headers.append(f'L{question_id}.{modality_id}_{sub_question_id}')
                     # Obtener submodalidades si existen
                     for submodality in sub_question.findall('.//Modality'):
                         submodality_id = submodality.attrib.get('ID')
                         if submodality_id:
-                            headers.append(f'Q{question_id}.{modality_id}.{sub_question_id}_{submodality_id}')
+                            headers.append(f'L{question_id}.{modality_id}.Q{sub_question_id}_{submodality_id}')
                         else:
                             print(f"Submodality without ID attribute found in subquestion {sub_question_id} of question {question_id}")
     
