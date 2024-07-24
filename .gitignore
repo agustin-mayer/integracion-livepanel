@@ -4,3 +4,4 @@ Askia\app\__pycache__
 *.pyc
 /SurveyMonkey/__pycache__
 SurveyMonkey/__pycache__/csv_writer.cpython-312.pyc
+env
