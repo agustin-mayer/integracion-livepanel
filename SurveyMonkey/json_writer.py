@@ -1,7 +1,15 @@
 import csv
 import json
+import os
 
-def save_original_responses(json_path, responses):
+def save_json_responses(collector_id, responses):
+    data_folder = f"./data/{collector_id}/"
+    
+    if not os.path.exists(data_folder):
+        os.makedirs(data_folder)
+
+    json_path = os.path.join(data_folder, "original_responses.json")
+
     with open(json_path, 'w') as json_file:
         json.dump(responses, json_file, indent=4)
     print(f"Respuestas JSON guardadas en {json_path}")
@@ -43,9 +51,12 @@ def parse_header(header):
         return None, None, None, None
 
 def csv_to_json_and_update(csv_file, api, survey_collector_id):
-    with open(csv_file, 'r') as file:
+    with open(csv_file, 'r', encoding='latin1') as file:
         csv_reader = csv.DictReader(file)
         
+         # Imprimir los nombres de las columnas para depuración
+        print("Columnas en el archivo CSV:", csv_reader.fieldnames)
+
         for row in csv_reader:
             user_response_id = row['ResponseID']
             pages = {}
