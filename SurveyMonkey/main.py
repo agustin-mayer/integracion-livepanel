@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 import os
 import time
 import chardet, csv
+import pandas as pd
 
 
 def get_livepanel_API_access():
@@ -29,7 +30,7 @@ def main():
     collector_id_3 = "431965638"
     collector_id_4 = "457016504"
 
-    """
+    
     responses = sMonkey_API.get_responses(collector_id_3)
     save_json_responses(collector_id_3, responses)
     json_to_csv(collector_id_3, responses)
@@ -39,10 +40,22 @@ def main():
     datafile = f"data/{collector_id_3}/original_responses.csv"
     response = livepanel_API_access.create_project(datafile)
     print(f"Create Project Response: {response}")
+    project_id = response["id"]
 
+    while True:
+        project = livepanel_API_access.get_project(project_id)
+        project_name = project['name']
+        project_status = project['state']
+        print(f"Estado del proyecto: {project_status}")
+
+        if project_status == 'CREATED':
+            print(f"El proyecto {project_name} esta listo para encolar.")
+            break
+        else:
+            # Espera 15 segundos antes de la próxima verificación
+            time.sleep(15)
     
     print(f"Encolando proyecto para procesamiento..")
-    project_id = response["id"]
     livepanel_API_access.enqueue_project_for_processing(project_id)
     print(f"Enqueue Project for Procesing Response: {response}")
 
@@ -59,28 +72,26 @@ def main():
         else:
             # Espera 15 segundos antes de la próxima verificación
             time.sleep(15)
-    """
+    
     
     print("Descargando el dataset..")
-    save_path = f"data/{collector_id_3}/merged_responses.csv"
+    save_path_xlsx = f"data/{collector_id_3}/merged_responses.xlsx"
     csv_content = livepanel_API_access.download_dataset(199, 'Merged')
-    
-    result = chardet.detect(csv_content)
-    encoding = result['encoding']
 
-    with open(save_path, 'wb') as file:
+    with open(save_path_xlsx, 'wb') as file:
         file.write(csv_content)
-    print(f"Codificacion detectada: {encoding}")    
-    print(f"Dataset guardado en {save_path}")
+    print(f"Dataset guardado en {save_path_xlsx}")
 
-    with open(save_path, 'rb') as file:
-        head = file.read(500)
-        print("Contenido del archivo descargado (primeros 500 bytes):")
-        print(head)
+    # Convertir el archivo XLSX a CSV
+    print("Convirtiendo XLSX a CSV...")
+    save_path_csv = f"data/{collector_id_3}/merged_responses.csv"
+    xlsx_data = pd.read_excel(save_path_xlsx)
+    xlsx_data.to_csv(save_path_csv, index=False)
+    print(f"Archivo CSV guardado en {save_path_csv}")
 
-    #print("Convirtiendo las nuevas respuestas de CSV a JSON..")
-    #print("Importando las nuevas respuestas en SurveyMonkey..")
-    #csv_to_json_and_update(save_path, sMonkey_API, collector_id_3, encoding)
+    # Procesar el archivo CSV
+    print("Convirtiendo las nuevas respuestas de CSV a JSON..")
+    csv_to_json_and_update(save_path_csv, sMonkey_API, collector_id_3)
     
 
 if __name__ == "__main__":

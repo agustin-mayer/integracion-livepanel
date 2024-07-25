@@ -20,25 +20,11 @@ class SurveyMonkeyAPI:
         response = self.conn.getresponse()
         data = json.loads(response.read())
         return data
-
-    def get_survey_details(self, survey_id):
-        url = f"/v3/surveys/{survey_id}/details"
-        return self._api_request("GET", url)
-
-    def get_options(self, survey_id):
-        url = f"/v3/surveys/{survey_id}/details"
-        data = self._api_request("GET", url)
-        return data
     
     def complete_response(self, survey_collector_id, response_id, payload): 
         url = f"/v3/collectors/{survey_collector_id}/responses/{response_id}"
         return self._api_request("PATCH", url, payload)
     
-    
     def get_responses(self, collector_id):
         url = f"/v3/collectors/{collector_id}/responses/bulk"
         return self._api_request("GET", url)
-    
-    def post_responses(self, collector_id, payload_data): 
-        url = f"/v3/collectors/{collector_id}/responses/"
-        self._api_request("POST", url, payload_data)
