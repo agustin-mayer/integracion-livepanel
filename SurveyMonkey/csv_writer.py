@@ -1,7 +1,14 @@
 import csv
-import json
+import os
 
-def write_responses(csv_path, response_data):
+def json_to_csv(collector_id, response_data):
+    data_folder = f"./data/{collector_id}/"
+    
+    if not os.path.exists(data_folder):
+        os.makedirs(data_folder)
+
+    csv_path = os.path.join(data_folder, "original_responses.csv")
+
     response_keys = set()
     choice_questions = set()
 
