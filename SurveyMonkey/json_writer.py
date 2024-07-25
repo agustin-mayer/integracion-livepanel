@@ -50,11 +50,11 @@ def parse_header(header):
     except ValueError:
         return None, None, None, None
 
-def csv_to_json_and_update(csv_file, api, survey_collector_id):
-    with open(csv_file, 'r', encoding='latin1') as file:
+def csv_to_json_and_update(csv_file, api, survey_collector_id, encoding='utf-8'):
+    with open(csv_file, 'r', encoding=encoding, errors='replace') as file:
         csv_reader = csv.DictReader(file)
         
-         # Imprimir los nombres de las columnas para depuración
+        # Imprimir los nombres de las columnas para depuración
         print("Columnas en el archivo CSV:", csv_reader.fieldnames)
 
         for row in csv_reader:
