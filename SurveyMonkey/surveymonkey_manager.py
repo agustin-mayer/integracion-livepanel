@@ -3,7 +3,7 @@ import json
 import os
 from dotenv import load_dotenv
 
-class SurveyMonkeyAPI:
+class SurveyMonkeyManager:
     def __init__(self, token=None, survey_api_url=None):
         load_dotenv()
         self.token = token or os.getenv("SURVEYMONKEY_API_TOKEN")

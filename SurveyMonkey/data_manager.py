@@ -2,22 +2,85 @@ import csv
 import json
 import os
 import pandas as pd
+import uuid
 
 class DataManager:
-    def __init__(self):
-        pass
+    def __init__(self, collector_id):
+        #self.data_folder = f"data/{collector_id}/{uuid.uuid4().hex}/" #TESTING
+        self.data_folder = f"data/{collector_id}/"
+        if not os.path.exists(self.data_folder):
+            os.makedirs(self.data_folder)
     
-    def save_json_responses(self, collector_id, responses):
-        data_folder = f"./data/{collector_id}/"
-        
-        if not os.path.exists(data_folder):
-            os.makedirs(data_folder)
+    def get_data_folder(self):
+        return self.data_folder
 
-        json_path = os.path.join(data_folder, "original_responses.json")
-
+    def save_json_responses(self, responses):
+        json_path = os.path.join(self.data_folder, f"original_responses.json")
         with open(json_path, 'w') as json_file:
             json.dump(responses, json_file, indent=4)
         print(f"Respuestas JSON guardadas en {json_path}")
+
+    def json_to_csv(self, response_data):
+        csv_path = os.path.join(self.data_folder, f"original_responses.csv")
+
+        response_keys = set()
+        choice_questions = set()
+
+        for response in response_data["data"]:
+            for page in response["pages"]:
+                for question in page["questions"]:
+                    question_id = question["id"]
+                    page_id = page["id"]
+                    question_key = f"P{page_id}.Q{question_id}"
+                    if "answers" in question:
+                        for answer in question["answers"]:
+                            if "choice_id" in answer:
+                                if "row_id" in answer:
+                                    response_keys.add(f"{question_key}.R{answer['row_id']}_{answer['choice_id']}")
+                                    question_key += f".R{answer['row_id']}"
+                                else:
+                                    response_keys.add(f"{question_key}_{answer['choice_id']}")
+                                choice_questions.add(question_key)
+                            elif "text" in answer:
+                                if "row_id" in answer:
+                                    response_keys.add(f"{question_key}_R{answer['row_id']}")
+                                elif "other_id" in answer:
+                                    response_keys.add(f"{question_key}_O{answer['other_id']}")
+                                else:
+                                    response_keys.add(f"{question_key}")
+
+        headers = ["ResponseID"] + sorted(list(response_keys))
+
+        with open(csv_path, "w", newline="", encoding="utf-8") as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerow(headers)
+            
+            for response in response_data["data"]:
+                response_row = [response["id"]]
+                response_values = {key: ("0" if key.rsplit('_', 1)[0] in choice_questions else "") for key in response_keys}
+                for page in response["pages"]:
+                    for question in page["questions"]:
+                        question_id = question["id"]
+                        page_id = page["id"]
+                        question_key = f"P{page_id}.Q{question_id}"
+                        if "answers" in question:
+                            for answer in question["answers"]:
+                                if "choice_id" in answer:
+                                    if "row_id" in answer:
+                                        response_values[f"{question_key}.R{answer['row_id']}_{answer['choice_id']}"] = "1"
+                                    else:
+                                        response_values[f"{question_key}_{answer['choice_id']}"] = "1"
+                                elif "text" in answer:
+                                    if "row_id" in answer:
+                                        response_values[f"{question_key}_R{answer['row_id']}"] = answer["text"]
+                                    elif "other_id" in answer:
+                                        response_values[f"{question_key}_O{answer['other_id']}"] = answer["text"]
+                                    else:
+                                        response_values[f"{question_key}"] = answer["text"]
+                response_row.extend([response_values[key] for key in sorted(response_keys)])
+                csv_writer.writerow(response_row)
+                
+        print(f"Datos convertidos y guardados en {csv_path}")
 
     def clean_header(self, header):
         return header.replace('[|]Validation', '')
@@ -104,8 +167,9 @@ class DataManager:
         user_data = {"pages": list(pages.values())}
         return user_response_id, user_data
 
-    def csv_to_json_and_update(self, csv_file, api, survey_collector_id):
-        temp_csv_file = self.clean_and_save_csv(csv_file)
+    def csv_to_json_and_update(self, api, survey_collector_id):
+        csv_path = os.path.join(self.data_folder, f"merged_responses.csv")
+        temp_csv_file = self.clean_and_save_csv(csv_path)
 
         with open(temp_csv_file, 'r', encoding='utf-8', errors='replace') as file:
             csv_reader = csv.DictReader(file)
@@ -125,75 +189,12 @@ class DataManager:
         print("Respuestas actualizadas con éxito.")
         os.remove(temp_csv_file)
 
-    def json_to_csv(self, collector_id, response_data):
-        data_folder = f"./data/{collector_id}/"
-        
-        if not os.path.exists(data_folder):
-            os.makedirs(data_folder)
 
-        csv_path = os.path.join(data_folder, "original_responses.csv")
-
-        response_keys = set()
-        choice_questions = set()
-
-        for response in response_data["data"]:
-            for page in response["pages"]:
-                for question in page["questions"]:
-                    question_id = question["id"]
-                    page_id = page["id"]
-                    question_key = f"P{page_id}.Q{question_id}"
-                    if "answers" in question:
-                        for answer in question["answers"]:
-                            if "choice_id" in answer:
-                                if "row_id" in answer:
-                                    response_keys.add(f"{question_key}.R{answer['row_id']}_{answer['choice_id']}")
-                                    question_key += f".R{answer['row_id']}"
-                                else:
-                                    response_keys.add(f"{question_key}_{answer['choice_id']}")
-                                choice_questions.add(question_key)
-                            elif "text" in answer:
-                                if "row_id" in answer:
-                                    response_keys.add(f"{question_key}_R{answer['row_id']}")
-                                elif "other_id" in answer:
-                                    response_keys.add(f"{question_key}_O{answer['other_id']}")
-                                else:
-                                    response_keys.add(f"{question_key}")
-
-        headers = ["ResponseID"] + sorted(list(response_keys))
-
-        with open(csv_path, "w", newline="", encoding="utf-8") as csvfile:
-            csv_writer = csv.writer(csvfile)
-            csv_writer.writerow(headers)
-            
-            for response in response_data["data"]:
-                response_row = [response["id"]]
-                response_values = {key: ("0" if key.rsplit('_', 1)[0] in choice_questions else "") for key in response_keys}
-                for page in response["pages"]:
-                    for question in page["questions"]:
-                        question_id = question["id"]
-                        page_id = page["id"]
-                        question_key = f"P{page_id}.Q{question_id}"
-                        if "answers" in question:
-                            for answer in question["answers"]:
-                                if "choice_id" in answer:
-                                    if "row_id" in answer:
-                                        response_values[f"{question_key}.R{answer['row_id']}_{answer['choice_id']}"] = "1"
-                                    else:
-                                        response_values[f"{question_key}_{answer['choice_id']}"] = "1"
-                                elif "text" in answer:
-                                    if "row_id" in answer:
-                                        response_values[f"{question_key}_R{answer['row_id']}"] = answer["text"]
-                                    elif "other_id" in answer:
-                                        response_values[f"{question_key}_O{answer['other_id']}"] = answer["text"]
-                                    else:
-                                        response_values[f"{question_key}"] = answer["text"]
-                response_row.extend([response_values[key] for key in sorted(response_keys)])
-                csv_writer.writerow(response_row)
-                
-        print(f"Datos convertidos y guardados en {csv_path}")
-
-    def xlsx_to_csv(self, xlsx_path, csv_path):
+    def xlsx_to_csv(self):
         print("Convirtiendo XLSX a CSV...")
+        xlsx_path = os.path.join(self.data_folder, f"merged_responses.xlsx")
+        csv_path = os.path.join(self.data_folder, f"merged_responses.csv")
+
         xlsx_data = pd.read_excel(xlsx_path)
         xlsx_data.to_csv(csv_path, index=False)
         print(f"Archivo CSV guardado en {csv_path}")

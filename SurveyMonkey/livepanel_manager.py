@@ -5,17 +5,20 @@ from Livepanel_SDK import LivepanelAuth, APIAccess
 import uuid
 
 class LivepanelManager:
-    def __init__(self):
+    def __init__(self, data_folder):
         load_dotenv()
         self.api = self.get_livepanel_API_access()
+        self.data_folder = data_folder
 
     def get_livepanel_API_access(self):
         livepanel_API_key = os.getenv('LIVEPANEL_API_KEY')
         auth = LivepanelAuth(livepanel_API_key)
         return APIAccess(auth)
     
-    def create_project(self, datafile):
+    def create_project(self):
         print("Creando nuevo proyecto en Livepanel..")
+        
+        datafile = os.path.join(self.data_folder, f"original_responses.csv")
         project_name = f"Proyecto_{uuid.uuid4().hex}"
         
         response = self.api.create_project(datafile, project_name)
@@ -41,8 +44,10 @@ class LivepanelManager:
         response = self.api.enqueue_project_for_processing(project_id)
         print(f"Enqueue Project for Processing Response: {response}")
 
-    def download_dataset(self,save_path_xlsx, project_id):
+    def download_dataset(self, project_id):
         print("Descargando el dataset..")
+        
+        save_path_xlsx = os.path.join(self.data_folder, f"merged_responses.xlsx")
         csv_content = self.api.download_dataset(project_id, 'Merged')
         with open(save_path_xlsx, 'wb') as file:
             file.write(csv_content)
