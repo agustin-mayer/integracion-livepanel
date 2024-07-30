@@ -31,12 +31,15 @@ class LivepanelManager:
             project = self.api.get_project(project_id)
             project_name = project['name']
             project_status = project['state']
-
+            
+            print(f"Estado del proyecto: {project_status}")
+            
+            
             if project_status == desired_status:
-                print(f"El proyecto {project_name} alcanzo el estado: {project_status}.")
                 break
+            elif project_status == "ERROR_INITIALIZING":
+                self.api.delete_project(project_id)
             else:
-                print(f"Estado del proyecto: {project_status}")
                 time.sleep(check_interval)
     
     def enqueue_project_for_processing(self, project_id):
