@@ -9,18 +9,19 @@ def main():
     collector_id_2 = "431991261"
     collector_id_3 = "431965638"
     collector_id_4 = "457016504"
+    collector_id_5 = "432303728"
     
-    data_manager = DataManager(collector_id)
+    data_manager = DataManager(collector_id_5)
     data_folder = data_manager.get_data_folder()
     
     livepanel_manager = LivepanelManager(data_folder)
 
+    #SE OMITEN LAS DESCARGAS PARA TESTING
     #Obtener respuestas JSON de SurveyMonkey
-    # SE OMITEN LAS DESCARGAS PARA TESTING
-    # responses = surveymonkey_manager.get_responses(collector_id)
-    # data_manager.save_json_responses(responses)
-    # data_manager.json_to_csv(responses)
-
+    responses = surveymonkey_manager.get_responses(collector_id_5)
+    data_manager.save_json_responses(responses)
+    data_manager.json_to_csv(responses)
+    """
     #Crear nuevo proyecto Livepanel
     project_id = livepanel_manager.create_project()
 
@@ -37,6 +38,6 @@ def main():
 
     # Procesar el archivo CSV
     data_manager.csv_to_json_and_update(surveymonkey_manager, collector_id)
-    
+    """
 if __name__ == "__main__":
     main()
