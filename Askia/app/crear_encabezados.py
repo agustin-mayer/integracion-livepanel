@@ -28,9 +28,8 @@ def parse_survey_structure(xml_file):
     tree = ET.parse(xml_file, parser=ET.XMLParser(encoding=encoding))
     root = tree.getroot()
     
-    headers = ['Interview']  # Encabezado de la columna de ID de entrevista
+    headers = ['Interview']  
     
-    # Recorrer las preguntas y crear encabezados para el CSV
     for question in root.findall('.//Question'):
         question_id = question.attrib.get('ID')
         if not question_id:
@@ -39,22 +38,20 @@ def parse_survey_structure(xml_file):
         
         headers.append(question_id)
         
-        # Obtener modalidades recursivamente si existen
         modalities = get_modalities_recursive(question_id, root)
         for modality_id in modalities:
             headers.append(f'Q{question_id}_{modality_id}')
         
-        # Si la pregunta es un loop, agregar encabezados para las preguntas internas y submodalidades
         if question.attrib.get('ElementType') == 'loop':
             for modality_id in modalities:
-                headers.append(f'L{question_id}_{modality_id}')  # Encabezado para la modalidad dentro del loop
+                headers.append(f'L{question_id}_{modality_id}') 
                 for sub_question in question.findall('.//Questions/Question'):
                     sub_question_id = sub_question.attrib.get('ID')
                     if not sub_question_id:
                         print(f"Subquestion without ID attribute found in question {question_id}")
                         continue
                     headers.append(f'L{question_id}.{modality_id}_{sub_question_id}')
-                    # Obtener submodalidades si existen
+                    
                     for submodality in sub_question.findall('.//Modality'):
                         submodality_id = submodality.attrib.get('ID')
                         if submodality_id:

@@ -12,6 +12,7 @@ class LivepanelManager:
 
     def get_livepanel_API_access(self):
         livepanel_API_key = os.getenv('LIVEPANEL_API_KEY')
+        print(livepanel_API_key)
         auth = LivepanelAuth(livepanel_API_key)
         return APIAccess(auth)
     
@@ -38,7 +39,9 @@ class LivepanelManager:
             if project_status == desired_status:
                 break
             elif project_status == "ERROR_INITIALIZING":
-                self.api.delete_project(project_id)
+                response = self.api.delete_project(project_id)
+                print(f"El proyecto se eliminará. Delete Response: {response}")
+                break
             else:
                 time.sleep(check_interval)
     
