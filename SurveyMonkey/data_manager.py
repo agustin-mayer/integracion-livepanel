@@ -6,8 +6,8 @@ import uuid
 
 class DataManager:
     def __init__(self, collector_id):
-        #self.data_folder = f"data/{collector_id}/{uuid.uuid4().hex}/" #TESTING
-        self.data_folder = f"data/{collector_id}/"
+        #self.data_folder = f"data/{collector_id}/{uuid.uuid4().hex}/" 
+        self.data_folder = f"data/{collector_id}/" #TESTING
         if not os.path.exists(self.data_folder):
             os.makedirs(self.data_folder)
     

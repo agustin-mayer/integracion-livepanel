@@ -12,7 +12,6 @@ class LivepanelManager:
 
     def get_livepanel_API_access(self):
         livepanel_API_key = os.getenv('LIVEPANEL_API_KEY')
-        print(livepanel_API_key)
         auth = LivepanelAuth(livepanel_API_key)
         return APIAccess(auth)
     
@@ -34,7 +33,6 @@ class LivepanelManager:
             project_status = project['state']
             
             print(f"Estado del proyecto: {project_status}")
-            
             
             if project_status == desired_status:
                 break
